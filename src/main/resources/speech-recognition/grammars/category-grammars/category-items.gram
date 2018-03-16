@@ -1,0 +1,54 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains all the different types of clothes, shoes, and accessories
+  * that can be ordered in the system.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-items;
+
+// Body:
+public <item> = bag
+              | ballerinas
+              | belt
+              | bikini
+              | blazer
+              | blouse
+              | boots
+              | cardigan
+              | coat
+              | dress
+              | flats
+              | gloves
+              | hat
+              | heels
+              | jacket
+              | jeans
+              | jewellery
+              | jumper
+              | jumpsuit
+              | leggings
+              | parka
+              | pyjamas
+              | sandals
+              | scarf
+              | shirt
+              | shoes
+              | shorts
+              | skirt
+              | sneakers
+              | socks
+              | sunglasses
+              | sweater
+              | sweatshirt
+              | swimsuit
+              | tights
+              | top
+              | trousers
+              | turtleneck
+              ;

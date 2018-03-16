@@ -1,0 +1,19 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains the main kinds of merchandise that are available in the ordering system.
+  * In this particular case, the system is used for ordering fashion items.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-groups;
+
+// Body:
+public <group> = accessories
+               | clothes
+               | shoes
+               ;

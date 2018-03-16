@@ -1,0 +1,46 @@
+#JSGF V1.0;
+
+/**
+  * A grammar that describes the ordering dialog.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar ordering-dialog;
+
+import <category-grammars.category-answers.*>;
+import <category-grammars.category-colors.*>;
+import <category-grammars.category-groups.*>;
+import <category-grammars.category-items.*>;
+import <category-grammars.category-numbers.*>;
+
+// ------------
+// BODY
+// ------------
+
+public <agreed> = ok | okay | yes | sure | of course;
+public <article-indefinite> = a | an;
+public <article-definite> = the;
+public <it-is> = it is | it's | the item is;
+public <ordinal> = first | second | third | fourth | fifth | sixth | seventh | eighth | ninth | tenth;
+
+public <specify-item-group-1> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] <group> [category];
+public <specify-item-group-2> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] [category] <group>;
+public <specify-item-group-3> = [<article-definite> category is] <group>;
+
+public <specify-item-type-1> = [<it-is>] [<article-indefinite>] <color> and <color> <item>;
+public <specify-item-type-2> = [<it-is>] [<article-indefinite>] <color> <item>;
+public <specify-item-type-3> = [<it-is>] [<article-indefinite>] <item>;
+
+public <intro> = [<agreed>] [<article-definite> (number | item number) is];
+
+public <specify-item-number-1> = [<intro>] <number> <number> <number> <number>; // one two three four
+public <specify-item-number-2> = [<intro>] <number> [and] <number>;             // twenty fifty
+public <specify-item-number-3> = [<intro>] <number> <number> [and] <number>;    // one thousand and six
+
+public <specify-incorrect-item-number-1> = [<intro>] <number>;
+public <specify-incorrect-item-number-2> = [<agreed>] [<it-is>] <article-definite> <ordinal> item;
+public <specify-incorrect-item-number-3> = [<it-is>] [<article-definite>] item [number] <number>;
+
+public <yes-no-answer> = <answer> [i (did | did not | didn't)];

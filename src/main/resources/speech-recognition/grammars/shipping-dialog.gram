@@ -1,0 +1,33 @@
+#JSGF V1.0;
+
+/**
+  * A grammar that describes the shipping dialog.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar shipping-dialog;
+
+import <category-grammars.category-answers.*>;
+
+// ------------
+// BODY
+// ------------
+
+public <delivery-type> = premium [next day] | [free] standard;
+public <i-want> = i (would like | want);
+
+public <choose-delivery> = [<i-want>] [the] <delivery-type> [delivery];
+
+public <premium-cost> = how much (does the <delivery-type> delivery cost | is the <delivery-type> delivery);
+
+public <positive-answers> = [<answer>] ([it's | it is | that's | that is] [ok]) | of course | i want (it | that | the premium [delivery]);
+public <negative-answers-1> = [<answer>] (i (do not | don't) want (that | it | the premium [delivery]));
+public <negative-answers-2> = [<answer>] (it is | it's) not;
+
+// ------------
+// CATEGORIES
+// ------------
+
+public <yes-no-answer> = <answer>;

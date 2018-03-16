@@ -1,0 +1,17 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains the two available delivery options.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-deliveries;
+
+// Body:
+public <delivery> = premium
+                  | standard
+                  ;

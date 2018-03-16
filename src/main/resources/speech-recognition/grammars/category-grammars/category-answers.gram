@@ -1,0 +1,22 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains different affirmative and negative answers that can be used within the dialog.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-answers;
+
+// Body:
+public <answer> = alright
+                | no
+                | nope
+                | ok
+                | sure
+                | yes
+                | yeah
+                ;

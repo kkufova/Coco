@@ -1,0 +1,45 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains basic colors that can be used during ordering.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-colors;
+
+// Body:
+public <color> = black
+               | blue
+               | brown
+               | cyan
+               | emerald
+               | fuchsia
+               | gray
+               | green
+               | lavender
+               | leather
+               | lime
+               | magenta
+               | maroon
+               | navy
+               | olive
+               | orange
+               | orchid
+               | peach
+               | pink
+               | plum
+               | purple
+               | red
+               | salmon
+               | teal
+               | turquoise
+               | violet
+               | white
+               | yellow
+               | light
+               | dark
+               ;

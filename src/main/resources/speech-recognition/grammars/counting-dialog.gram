@@ -1,0 +1,34 @@
+#JSGF V1.0;
+
+/**
+  * A grammar that describes the counting dialog.
+  * Its purpose is to find out the total number of items that will be ordered.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar counting-dialog;
+
+import <category-grammars.category-answers.*>;
+import <category-grammars.category-numbers.*>;
+
+// ------------
+// BODY
+// ------------
+
+public <operation> = order | buy;
+
+public <i-want> = (i (would like | want) to <operation>) | (i (would like | want));
+
+public <how-many> = [<i-want>] <number> [items];
+
+public <correction> = [the number [of items] [<i-want>] is] <number>;
+
+public <not-sure> = ([i am] not sure) | (i (don't | do not) know);
+
+// ------------
+// CATEGORIES
+// ------------
+
+public <yes-no-answer> = <answer>;

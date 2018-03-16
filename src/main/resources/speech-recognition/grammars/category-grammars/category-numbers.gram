@@ -1,0 +1,46 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains numbers reusable within the dialog system.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-numbers;
+
+// Body:
+public <number> = oh
+                | zero
+                | one
+                | two
+                | three
+                | four
+                | five
+                | six
+                | seven
+                | eight
+                | nine
+                | ten
+                | eleven
+                | twelve
+                | thirteen
+                | fourteen
+                | fifteen
+                | sixteen
+                | seventeen
+                | eighteen
+                | nineteen
+                | twenty
+                | thirty
+                | forty
+                | fifty
+                | sixty
+                | seventy
+                | eighty
+                | ninety
+                | hundred
+                | thousand
+                ;

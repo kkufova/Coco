@@ -1,0 +1,26 @@
+#JSGF V1.0;
+
+/**
+  * A grammar that describes the closing dialog.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar closing-dialog;
+
+import <category-grammars.category-answers.*>;
+
+// ------------
+// BODY
+// ------------
+
+public <operation-order> = cancel | change | delete | modify;
+public <operation-manager> = talk to | speak with;
+public <i-want> = i (want | would like) to;
+
+public <manage-order> = <i-want> <operation-order> the order;
+public <place-order> = <i-want> place [another | a new] order;
+public <manager> = <i-want> <operation-manager> (the | your) manager;
+
+public <yes-no-answer> = <answer> [there is [not]];

@@ -1,0 +1,26 @@
+#JSGF V1.0;
+
+/**
+  * A grammar that describes the opening dialog.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar opening-dialog;
+
+import <category-grammars.category-answers.*>;
+import <category-grammars.category-users.*>;
+
+// ------------
+// BODY
+// ------------
+
+<greeting> = greetings | good day | hello | hey | hi ;
+<introduction> =  i'm | i am | it's | it is | my name is;
+
+public <command> = [<greeting>] [<introduction>] <user>+;
+
+public <agreed> = i did | i didn't | i did not | i have | i haven't | i have not | sure | of course | indeed;
+
+public <yes-no-answer> = [<agreed>] <answer> [<agreed>];

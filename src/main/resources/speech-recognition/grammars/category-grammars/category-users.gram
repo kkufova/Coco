@@ -1,0 +1,20 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains the names of the known users of the ordering system.
+  * This grammar expands with the use of the system.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-users;
+
+// Body:
+public <user> = elizabeth
+              | katie
+              | nina
+              | rosie
+              ;
