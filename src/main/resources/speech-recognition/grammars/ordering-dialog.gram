@@ -14,6 +14,7 @@ import <category-grammars.category-colors.*>;
 import <category-grammars.category-groups.*>;
 import <category-grammars.category-items.*>;
 import <category-grammars.category-numbers.*>;
+import <category-grammars.category-sizes.*>;
 
 // ------------
 // BODY
@@ -33,8 +34,9 @@ public <specify-item-type-1> = [<it-is>] [<article-indefinite>] <color> and <col
 public <specify-item-type-2> = [<it-is>] [<article-indefinite>] <color> <item>;
 public <specify-item-type-3> = [<it-is>] [<article-indefinite>] <item>;
 
-public <intro> = [<agreed>] [<article-definite> (number | item number) is];
+public <specify-item-size-1> = [i would like the (item | <item>) to be] [in] [size] <size>;
 
+public <intro> = [<agreed>] [<article-definite> (number | item number) is];
 public <specify-item-number-1> = [<intro>] <number> <number> <number> <number>; // one two three four
 public <specify-item-number-2> = [<intro>] <number> [and] <number>;             // twenty fifty
 public <specify-item-number-3> = [<intro>] <number> <number> [and] <number>;    // one thousand and six

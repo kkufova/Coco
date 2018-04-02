@@ -1,0 +1,30 @@
+#JSGF V1.0;
+
+/**
+  * --- This is a CATEGORY grammar. ---
+  *
+  * A grammar that contains the available sizes of the clothes.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar category-grammars.category-sizes;
+
+// Body:
+public <size> = universal
+              | xs
+              | s
+              | m
+              | l
+              | xl
+              | xxl
+              | two
+              | three
+              | four
+              | five
+              | six
+              | seven
+              | eight
+              | nine
+              ;

@@ -55,6 +55,11 @@ public class OrderingDialog extends DialogPart {
         synthesizeSpeech(SPECIFY_ITEM_TYPE);
         Word itemType = listenForWord(Category.ITEMS);
 
+        // Get item size:
+        synthesizeSpeech(SPECIFY_ITEM_SIZE + itemType + TO_BE + "?");
+        Word itemSize = listenForWord(Category.SIZES);
+        itemSize = helper.convertSize(itemSize);
+
         // Get item number:
         synthesizeSpeech(SPECIFY_ITEM_NUMBER);
         utterance = recognizeSpeech(recognizer, false);
@@ -62,7 +67,7 @@ public class OrderingDialog extends DialogPart {
 
         synthesizeSpeech(THANK_YOU);
 
-        return new Item(itemGroup, itemType, itemNumber);
+        return new Item(itemGroup, itemType, itemSize, itemNumber);
     }
 
     private int getItemNumber() throws Exception {
@@ -143,16 +148,16 @@ public class OrderingDialog extends DialogPart {
 
     private void printTableOfOrderedItems(List<Item> orderedItems) {
         final Object[][] table = new String[orderedItems.size() + 1][];
-        table[0] = new String[]{"ITEM NO.", "CATEGORY", "TYPE", "NUMBER"};
+        table[0] = new String[]{"ITEM NO.", "CATEGORY", "TYPE", "SIZE", "NUMBER"};
 
         int i = 1;
 
         for (Item item : orderedItems) {
-            table[i] = new String[]{i + ".", item.itemGroup.toString(), item.itemType.toString(), item.itemNumber + ""};
+            table[i] = new String[]{i + ".", item.itemGroup.toString(), item.itemType.toString(), item.itemSize.toString(), item.itemNumber + ""};
             i++;
         }
         for (final Object[] row : table) {
-            System.out.format("%-15s%-15s%-15s%-15s\n", row);
+            System.out.format("%-15s%-15s%-15s%-15s%-15s\n", row);
         }
     }
 
@@ -172,11 +177,13 @@ public class OrderingDialog extends DialogPart {
 
         private Word itemGroup;
         private Word itemType;
+        private Word itemSize;
         private int itemNumber;
 
-        Item(Word itemGroup, Word itemType, int itemNumber) {
+        Item(Word itemGroup, Word itemType, Word itemSize, int itemNumber) {
             this.itemGroup = itemGroup;
             this.itemType = itemType;
+            this.itemSize = itemSize;
             this.itemNumber = itemNumber;
         }
 

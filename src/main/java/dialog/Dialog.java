@@ -40,4 +40,6 @@ public class Dialog {
 // TODO: 1. Po dokonceni implementace: refaktoring vsech trid.
 // TODO: 2. Javadoc.
 // TODO: 3. Globalni exception handling.
+// TODO: 4. Distribuce.
+// TODO: 5. Obecne prikazy: stop, exit, wait, atp.
 // ---------------------------------------------------------------------------------------------------------------------

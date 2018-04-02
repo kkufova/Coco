@@ -74,4 +74,26 @@ public class DialogHelper {
         return keys.get(cardinal);
     }
 
+    public Word convertSize(Word size) {
+        HashMap<Word, Word> keys = new HashMap<>();
+
+        keys.put(new Word("universal"), new Word("Universal"));
+        keys.put(new Word("xs"), new Word("XS"));
+        keys.put(new Word("s"), new Word("S"));
+        keys.put(new Word("m"), new Word("M"));
+        keys.put(new Word("l"), new Word("L"));
+        keys.put(new Word("xl"), new Word("XL"));
+        keys.put(new Word("xxl"), new Word("XXL"));
+        keys.put(new Word("two"), new Word("2"));
+        keys.put(new Word("three"), new Word("3"));
+        keys.put(new Word("four"), new Word("4"));
+        keys.put(new Word("five"), new Word("5"));
+        keys.put(new Word("six"), new Word("6"));
+        keys.put(new Word("seven"), new Word("7"));
+        keys.put(new Word("eight"), new Word("8"));
+        keys.put(new Word("nine"), new Word("9"));
+
+        return keys.get(size);
+    }
+
 }

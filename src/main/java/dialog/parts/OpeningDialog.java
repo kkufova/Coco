@@ -25,8 +25,9 @@ public class OpeningDialog extends DialogPart {
     @Override
     public void actDialogPart() throws Exception {
         synthesizeSpeech(WELCOME);
-        synthesizeSpeech(EXCUSE_ME);
         synthesizeSpeech(INTRODUCTION);
+        synthesizeSpeech(EXCUSE_ME);
+        synthesizeSpeech(SAY_YOUR_NAME);
 
         // Obtain the user name from the utterance and capitalize it:
         name = listenForString(Category.USERS);

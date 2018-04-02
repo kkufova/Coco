@@ -37,7 +37,7 @@ public final class Speeches {
     public static final String HOW_MANY_ITEMS = "OK! How many items would you like to order in total?";
     public static final String I_AM_SORRY = "I am sorry.";
     public static final String INTRODUCE_ITEM = "Now, I need you to tell me more about the ";
-    public static final String INTRODUCTION = "My name is Coco and I will guide you through the whole experience. Firstly, please say your name.";
+    public static final String INTRODUCTION = "My name is Coco and I will guide you through the whole experience.";
     public static final String ITEM = "item";
     public static final String ITEMS = "items";
     public static final String LEAVE_EMPTY = "You can leave this field empty. To do so, just press Enter.";
@@ -54,13 +54,16 @@ public final class Speeches {
     public static final String REPEAT_AMOUNT = "Could you please repeat the total number of items, then?";
     public static final String REPEAT_ITEM_NUMBER = "Could you please repeat the item number? For example: one two three four.";
     public static final String REVIEW_SHIPPING_INFO = "Now, please review all the shipping information below.";
+    public static final String SAY_YOUR_NAME = "Firstly, please say your name.";
     public static final String SHIPPING_INFORMATION = "Now I need to get all the shipping information.";
     public static final String SPECIFY_ITEM_CATEGORY = " item from the category clothes, shoes, or accessories?";
     public static final String SPECIFY_ITEM_NUMBER = "Could you now kindly dictate the four-digit item number that is available at the top of the page?";
+    public static final String SPECIFY_ITEM_SIZE = "What size would you like your ";
     public static final String SPECIFY_ITEM_TYPE = "Could you please specify the type of the item?";
     public static final String STANDARD_DELIVERY = "OK, I will send the package for free as a standard delivery.";
     public static final String THANK_YOU = "Thank you!";
     public static final String THIS_IS_ALL_I_NEED = "And this is all the information I need to place your order.";
+    public static final String TO_BE = " to be";
     public static final String TOTAL_AMOUNT = "The total price is 45 pounds. Is it alright?";
     public static final String TOTAL_AMOUNT_WITH_DELIVERY = "The total price is now 50 pounds.";
     public static final String UNFORTUNATE = "Oh, that is unfortunate.";

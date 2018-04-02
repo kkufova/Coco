@@ -7,5 +7,6 @@ public enum Category {
     GROUPS,
     ITEMS,
     NUMBERS,
+    SIZES,
     USERS
 }

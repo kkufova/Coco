@@ -63,8 +63,16 @@ public interface DialogSetup {
         }
         utterance.setWords(words);
 
-        System.out.println("You: " + utterance);
+        printUtterance(utterance);
         return utterance;
+    }
+
+    default void printUtterance(Utterance utterance) {
+        // Format the utterance:
+        String utteranceToPrint = utterance.toString().substring(0, 1).toUpperCase() + utterance.toString().substring(1);
+        utteranceToPrint = utteranceToPrint.concat(".");
+
+        System.out.println("You: " + utteranceToPrint);
     }
 
     default void synthesizeSpeech(String text) throws Exception {
