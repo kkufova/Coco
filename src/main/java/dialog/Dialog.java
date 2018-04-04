@@ -18,8 +18,8 @@ public class Dialog {
     public static void main(String[] args) throws Exception {
         DialogFactory factory = new DialogFactory();
 
-        DialogPart openingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.OPENING);
-        openingDialog.actDialogPart();
+        //DialogPart openingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.OPENING);
+        //openingDialog.actDialogPart();
 
         DialogPart countingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.COUNTING);
         countingDialog.actDialogPart();

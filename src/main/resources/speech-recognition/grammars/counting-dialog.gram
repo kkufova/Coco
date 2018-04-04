@@ -21,7 +21,7 @@ public <operation> = order | buy;
 
 public <i-want> = (i (would like | want) to <operation>) | (i (would like | want));
 
-public <how-many> = [<i-want>] <number> [items];
+public <how-many> = [<i-want>] <number> [item | items];
 
 public <correction> = [the number [of items] [<i-want>] is] <number>;
 

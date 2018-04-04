@@ -5,6 +5,7 @@ public final class Speeches {
     private Speeches() {
     }
 
+    public static final String ALL_RIGHT = "All right, no problem!";
     public static final String ANYTHING_ELSE = "Is there anything else I can do for you?";
     public static final String CONFIRM_AMOUNT = "Did you say that the number of items you would like to order is ";
     public static final String CONFIRM_ITEM_NUMBER = "Did you say that the item number is ";
@@ -17,9 +18,9 @@ public final class Speeches {
     public static final String FIRST_NAME_CORRECT = "I already know your first name. Is it correct?";
     public static final String FILL_ADDRESS = "Now, please fill in the street and the house number.";
     public static final String FILL_CITY = "Please fill in the city.";
-    public static final String FILL_COUNTRY = "Alright, in that case, please fill in the correct country.";
+    public static final String FILL_COUNTRY = "All right, in that case, please fill in the correct country.";
     public static final String FILL_EMAIL = "Now, please fill in your email address. Please make sure it is correct.";
-    public static final String FILL_FIRST_NAME = "Alright, in that case, please fill in your first name.";
+    public static final String FILL_FIRST_NAME = "All right, in that case, please fill in your first name.";
     public static final String FILL_LAST_NAME = "Please fill in your last name.";
     public static final String FILL_PHONE_NUMBER = "What is your phone number? Make sure you do not type any non-numeric values.";
     public static final String FILL_POSTCODE = "What is the postcode?";
@@ -49,13 +50,14 @@ public final class Speeches {
     public static final String ORDER_TEN_QUESTION = "Do you want to order ten of the items you have chosen?";
     public static final String PLEASE_REPEAT = "I am sorry, but I do not understand. Could you please repeat your answer?";
     public static final String PLEASE_REVIEW_ITEMS = "Now, below is the list of all the ordered items. Please review the list of items before we proceed.";
-    public static final String PREMIUM_DELIVERY_COST = "The premium delivery costs 5 pounds. Is it alright?";
+    public static final String PREMIUM_DELIVERY_COST = "The premium delivery costs 5 pounds. Is it all right?";
     public static final String PROCEED_TO_CHECKOUT = "We will now proceed to the checkout.";
     public static final String REPEAT_AMOUNT = "Could you please repeat the total number of items, then?";
     public static final String REPEAT_ITEM_NUMBER = "Could you please repeat the item number? For example: one two three four.";
     public static final String REVIEW_SHIPPING_INFO = "Now, please review all the shipping information below.";
     public static final String SAY_YOUR_NAME = "Firstly, please say your name.";
     public static final String SHIPPING_INFORMATION = "Now I need to get all the shipping information.";
+    public static final String SHOULD_I_READ_ALOUD = "Do you want me to read the list aloud for you?";
     public static final String SPECIFY_ITEM_CATEGORY = " item from the category clothes, shoes, or accessories?";
     public static final String SPECIFY_ITEM_NUMBER = "Could you now kindly dictate the four-digit item number that is available at the top of the page?";
     public static final String SPECIFY_ITEM_SIZE = "What size would you like your ";
@@ -64,7 +66,7 @@ public final class Speeches {
     public static final String THANK_YOU = "Thank you!";
     public static final String THIS_IS_ALL_I_NEED = "And this is all the information I need to place your order.";
     public static final String TO_BE = " to be";
-    public static final String TOTAL_AMOUNT = "The total price is 45 pounds. Is it alright?";
+    public static final String TOTAL_AMOUNT = "The total price is 45 pounds. Is it all right?";
     public static final String TOTAL_AMOUNT_WITH_DELIVERY = "The total price is now 50 pounds.";
     public static final String UNFORTUNATE = "Oh, that is unfortunate.";
     public static final String WELCOME = "Hello! Welcome to the clothes and shoes ordering system.";

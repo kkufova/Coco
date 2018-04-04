@@ -46,3 +46,4 @@ public <specify-incorrect-item-number-2> = [<agreed>] [<it-is>] <article-definit
 public <specify-incorrect-item-number-3> = [<it-is>] [<article-definite>] item [number] <number>;
 
 public <yes-no-answer> = <answer> [i (did | did not | didn't)];
+public <yes-no-answer-polite> = <answer> please;

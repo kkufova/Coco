@@ -119,8 +119,21 @@ public class OrderingDialog extends DialogPart {
 
         printTableOfOrderedItems(orderedItems);
 
-        synthesizeSpeech(EVERYTHING_CORRECT);
+        // Read the list of ordered items aloud if requested:
+        synthesizeSpeech(SHOULD_I_READ_ALOUD);
         Word answer = listenForWord(Category.ANSWERS);
+        int i = 1;
+        if (answer.isPositive()) {
+            synthesizeSpeech(ALL_RIGHT);
+            for (Item item : orderedItems) {
+                String ordinal = helper.convertCardinalToOrdinal(i).toString();
+                synthesizeSpeech("The " + ordinal + " item is from " + item.toString());
+                i++;
+            }
+        }
+
+        synthesizeSpeech(EVERYTHING_CORRECT);
+        answer = listenForWord(Category.ANSWERS);
         if (answer.isPositive()) {
             synthesizeSpeech(GREAT);
             synthesizeSpeech(PROCEED_TO_CHECKOUT);
@@ -185,6 +198,11 @@ public class OrderingDialog extends DialogPart {
             this.itemType = itemType;
             this.itemSize = itemSize;
             this.itemNumber = itemNumber;
+        }
+
+        @Override
+        public String toString() {
+            return ("group " + itemGroup + ", of type " + itemType + ", in size " + itemSize + ", and its number is " + itemNumber + ".");
         }
 
     }

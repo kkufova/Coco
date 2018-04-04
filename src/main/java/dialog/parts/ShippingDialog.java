@@ -135,18 +135,27 @@ public class ShippingDialog extends DialogPart {
     private void checkShippingInformation() throws Exception {
         synthesizeSpeech(REVIEW_SHIPPING_INFO);
 
-        System.out.println(
-                "First name: " + firstName + "\n" +
-                        "Last name: " + lastName + "\n" +
-                        "Address: " + address + "\n" +
-                        "City: " + city + "\n" +
-                        "Postcode: " + postcode + "\n" +
-                        "Country: " + country + "\n" +
-                        "Email address: " + emailAddress + "\n" +
-                        "Phone number: " + phoneNumber);
+        String shippingInfo = "First name: " + firstName + "\n" +
+                "Last name: " + lastName + "\n" +
+                "Address: " + address + "\n" +
+                "City: " + city + "\n" +
+                "Postcode: " + postcode + "\n" +
+                "Country: " + country + "\n" +
+                "Email address: " + emailAddress + "\n" +
+                "Phone number: " + phoneNumber;
+
+        // Read the entered shipping information aloud if requested:
+        synthesizeSpeech(SHOULD_I_READ_ALOUD);
+        Word answer = listenForWord(Category.ANSWERS);
+        if (answer.isPositive()) {
+            synthesizeSpeech(ALL_RIGHT);
+            synthesizeSpeech(shippingInfo);
+        } else {
+            System.out.println(shippingInfo);
+        }
 
         synthesizeSpeech(EVERYTHING_CORRECT);
-        Word answer = listenForWord(Category.ANSWERS);
+        answer = listenForWord(Category.ANSWERS);
         if (!answer.isPositive()) {
             synthesizeSpeech(UNFORTUNATE);
             synthesizeSpeech(FILL_SHIPPING_INFO_AGAIN);
