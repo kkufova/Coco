@@ -57,7 +57,8 @@ public final class Speeches {
     public static final String REVIEW_SHIPPING_INFO = "Now, please review all the shipping information below.";
     public static final String SAY_YOUR_NAME = "Firstly, please say your name.";
     public static final String SHIPPING_INFORMATION = "Now I need to get all the shipping information.";
-    public static final String SHOULD_I_READ_ALOUD = "Do you want me to read the list aloud for you?";
+    public static final String SHOULD_READ_ALOUD_INFO = "Do you want me to read the entered information aloud for you?";
+    public static final String SHOULD_READ_ALOUD_LIST = "Do you want me to read the list aloud for you?";
     public static final String SPECIFY_ITEM_CATEGORY = " item from the category clothes, shoes, or accessories?";
     public static final String SPECIFY_ITEM_NUMBER = "Could you now kindly dictate the four-digit item number that is available at the top of the page?";
     public static final String SPECIFY_ITEM_SIZE = "What size would you like your ";

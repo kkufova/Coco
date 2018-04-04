@@ -120,7 +120,7 @@ public class OrderingDialog extends DialogPart {
         printTableOfOrderedItems(orderedItems);
 
         // Read the list of ordered items aloud if requested:
-        synthesizeSpeech(SHOULD_I_READ_ALOUD);
+        synthesizeSpeech(SHOULD_READ_ALOUD_LIST);
         Word answer = listenForWord(Category.ANSWERS);
         int i = 1;
         if (answer.isPositive()) {

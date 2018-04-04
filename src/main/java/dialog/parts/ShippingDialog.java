@@ -145,7 +145,7 @@ public class ShippingDialog extends DialogPart {
                 "Phone number: " + phoneNumber;
 
         // Read the entered shipping information aloud if requested:
-        synthesizeSpeech(SHOULD_I_READ_ALOUD);
+        synthesizeSpeech(SHOULD_READ_ALOUD_INFO);
         Word answer = listenForWord(Category.ANSWERS);
         if (answer.isPositive()) {
             synthesizeSpeech(ALL_RIGHT);
