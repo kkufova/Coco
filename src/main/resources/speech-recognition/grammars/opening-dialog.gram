@@ -16,10 +16,11 @@ import <category-grammars.category-users.*>;
 // BODY
 // ------------
 
-<greeting> = greetings | good day | hello | hey | hi ;
+<greetings> = good <part-of-the-day> | hello | hey | hi;
+<part-of-the-day> = morning | afternoon | evening;
 <introduction> =  i'm | i am | it's | it is | my name is;
 
-public <command> = [<greeting>] [<introduction>] <user>+;
+public <command> = [<greetings>] [<introduction>] <user>+;
 
 public <agreed> = i did | i didn't | i did not | i have | i haven't | i have not | sure | of course | indeed;
 

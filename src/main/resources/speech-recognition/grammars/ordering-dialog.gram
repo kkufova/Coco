@@ -21,10 +21,11 @@ import <category-grammars.category-sizes.*>;
 // ------------
 
 public <agreed> = ok | okay | yes | sure | of course;
-public <article-indefinite> = a | an;
-public <article-definite> = the;
-public <it-is> = it is | it's | the item is;
-public <ordinal> = first | second | third | fourth | fifth | sixth | seventh | eighth | ninth | tenth;
+
+<article-indefinite> = a | an;
+<article-definite> = the;
+<it-is> = it is | it's | the item is;
+<ordinal> = first | second | third | fourth | fifth | sixth | seventh | eighth | ninth | tenth;
 
 public <specify-item-group-1> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] <group> [category];
 public <specify-item-group-2> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] [category] <group>;
