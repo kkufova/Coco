@@ -6,11 +6,11 @@ import java.util.Locale;
 
 import javax.sound.sampled.AudioInputStream;
 
+import dialog.recognition.SpeechRecognizer;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
 
 import edu.cmu.sphinx.api.Configuration;
-import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.result.WordResult;
 
@@ -48,7 +48,7 @@ public interface DialogSetup {
         return configuration;
     }
 
-    default Utterance recognizeSpeech(LiveSpeechRecognizer recognizer, boolean clearData) throws Exception {
+    default Utterance recognizeSpeech(SpeechRecognizer recognizer, boolean clearData) throws Exception {
         recognizer.startRecognition(clearData);
         SpeechResult result = recognizer.getResult();
         recognizer.stopRecognition();

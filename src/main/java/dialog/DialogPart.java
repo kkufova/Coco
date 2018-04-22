@@ -5,18 +5,17 @@ import static dialog.constants.Speeches.PLEASE_REPEAT;
 import java.io.IOException;
 
 import dialog.enumerations.Category;
+import dialog.recognition.SpeechRecognizer;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
 
-import edu.cmu.sphinx.api.LiveSpeechRecognizer;
-
 public abstract class DialogPart implements DialogSetup {
 
-    protected LiveSpeechRecognizer recognizer;
+    protected SpeechRecognizer recognizer;
 
     protected DialogPart() {
         try {
-            recognizer = new LiveSpeechRecognizer(configureRecognizer(true, getDialogPartGrammar()));
+            recognizer = new SpeechRecognizer(configureRecognizer(true, getDialogPartGrammar()));
         } catch (IOException exception) {
             System.out.println("A problem with speech recognition has occurred.");
         }
