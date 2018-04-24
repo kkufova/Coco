@@ -63,6 +63,11 @@ public interface DialogSetup {
         }
         utterance.setWords(words);
 
+        if (utterance.isUnknown()) {
+            //System.out.println("Unknown utterance!");
+            return utterance;
+        }
+
         printUtterance(utterance);
         return utterance;
     }
@@ -71,6 +76,7 @@ public interface DialogSetup {
         // Format the utterance:
         String utteranceToPrint = utterance.toString().substring(0, 1).toUpperCase() + utterance.toString().substring(1);
         utteranceToPrint = utteranceToPrint.concat(".");
+        utteranceToPrint = utteranceToPrint.replace(" i ", " I ");
 
         System.out.println("You: " + utteranceToPrint);
     }

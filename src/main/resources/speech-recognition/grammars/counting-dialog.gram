@@ -13,22 +13,21 @@ grammar counting-dialog;
 import <category-grammars.category-answers.*>;
 import <category-grammars.category-numbers.*>;
 
-// ------------
-// BODY
-// ------------
+// -------------
+// DEFAULT RULES
+// -------------
 
-public <operation> = order | buy;
-
-public <i-want> = (i (would like | want) to <operation>) | (i (would like | want));
+<operation> = order | buy;
+<i-want> = (i (would like | want) to <operation>) | (i (would like | want));
 
 public <how-many> = [<i-want>] <number> [item | items];
 
 public <correction> = [the number [of items] [<i-want>] is] <number>;
 
 public <not-sure> = ([i am] not sure) | (i (don't | do not) know);
+public <agreed> = i did | i didn't | i did not | i have | i haven't | i have not | sure | of course | indeed;
+public <yes-no-answer> = [<agreed>] <answer> [<agreed>];
 
-// ------------
-// CATEGORIES
-// ------------
-
-public <yes-no-answer> = <answer>;
+// -------------
+// DERIVED RULES
+// -------------

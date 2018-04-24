@@ -11,7 +11,7 @@ public class SpeechRecognizer extends LiveSpeechRecognizer {
         super(configuration);
 
         context.setLocalProperty("flatLinguist->outOfGrammarProbability", "0.5");
-        context.setLocalProperty("flatLinguist->phoneInsertionProbability", "1e-5");
+        context.setLocalProperty("flatLinguist->phoneInsertionProbability", "0.1");
     }
 
 }

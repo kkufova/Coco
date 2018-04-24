@@ -128,6 +128,10 @@ public class Utterance {
         return createWordFromListOfWords(wordsFromCategory);
     }
 
+    public boolean isUnknown() {
+        return utterance.equals("<unk>");
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

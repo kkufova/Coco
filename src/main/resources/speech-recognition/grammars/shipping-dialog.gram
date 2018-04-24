@@ -11,12 +11,12 @@ grammar shipping-dialog;
 
 import <category-grammars.category-answers.*>;
 
-// ------------
-// BODY
-// ------------
+// -------------
+// DEFAULT RULES
+// -------------
 
-public <delivery-type> = premium [next day] | [free] standard;
-public <i-want> = i (would like | want);
+<delivery-type> = premium [next day] | [free] standard;
+<i-want> = i (would like | want);
 
 public <choose-delivery> = [<i-want>] [the] <delivery-type> [delivery];
 
@@ -26,8 +26,8 @@ public <positive-answers> = [<answer>] ([it's | it is | that's | that is] [ok]) 
 public <negative-answers-1> = [<answer>] (i (do not | don't) want (that | it | the premium [delivery]));
 public <negative-answers-2> = [<answer>] (it is | it's) not;
 
-// ------------
-// CATEGORIES
-// ------------
-
 public <yes-no-answer> = <answer>;
+
+// -------------
+// DERIVED RULES
+// -------------

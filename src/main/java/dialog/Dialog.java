@@ -24,14 +24,14 @@ public class Dialog {
         DialogPart countingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.COUNTING);
         countingDialog.actDialogPart();
 
-        DialogPart orderingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.ORDERING);
-        orderingDialog.actDialogPart();
+        //DialogPart orderingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.ORDERING);
+        //orderingDialog.actDialogPart();
 
-        DialogPart shippingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.SHIPPING);
-        shippingDialog.actDialogPart();
+        //DialogPart shippingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.SHIPPING);
+        //shippingDialog.actDialogPart();
 
-        DialogPart closingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.CLOSING);
-        closingDialog.actDialogPart();
+        //DialogPart closingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.CLOSING);
+        //closingDialog.actDialogPart();
     }
 
 }
@@ -42,5 +42,4 @@ public class Dialog {
 // TODO: 3. Globalni exception handling.
 // TODO: 4. Distribuce.
 // TODO: 5. Obecne prikazy: stop, exit, wait, atp.
-// TODO: 6. Modifikatory pristupu v gramatikach.
 // ---------------------------------------------------------------------------------------------------------------------

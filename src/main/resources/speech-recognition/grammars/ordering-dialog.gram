@@ -16,9 +16,9 @@ import <category-grammars.category-items.*>;
 import <category-grammars.category-numbers.*>;
 import <category-grammars.category-sizes.*>;
 
-// ------------
-// BODY
-// ------------
+// -------------
+// DEFAULT RULES
+// -------------
 
 public <agreed> = ok | okay | yes | sure | of course;
 
@@ -27,13 +27,10 @@ public <agreed> = ok | okay | yes | sure | of course;
 <it-is> = it is | it's | the item is;
 <ordinal> = first | second | third | fourth | fifth | sixth | seventh | eighth | ninth | tenth;
 
-public <specify-item-group-1> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] <group> [category];
-public <specify-item-group-2> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] [category] <group>;
-public <specify-item-group-3> = [<article-definite> category is] <group>;
+public <specify-item-group-1> = [<article-definite>] [<ordinal>] [item is from] [<article-definite>] (<group> [category] | [category] <group>);
+public <specify-item-group-2> = [<article-definite> category is] <group>;
 
-public <specify-item-type-1> = [<it-is>] [<article-indefinite>] <color> and <color> <item>;
-public <specify-item-type-2> = [<it-is>] [<article-indefinite>] <color> <item>;
-public <specify-item-type-3> = [<it-is>] [<article-indefinite>] <item>;
+public <specify-item-type-1> = [<it-is>] [<article-indefinite>] [(<color> | <color> [and] <color>)] <item>;
 
 public <specify-item-size-1> = [i would like the (item | <item>) to be] [in] [size] <size>;
 
@@ -48,3 +45,7 @@ public <specify-incorrect-item-number-3> = [<it-is>] [<article-definite>] item [
 
 public <yes-no-answer> = <answer> [i (did | did not | didn't)];
 public <yes-no-answer-polite> = <answer> please;
+
+// -------------
+// DERIVED RULES
+// -------------
