@@ -64,7 +64,7 @@ public interface DialogSetup {
         utterance.setWords(words);
 
         if (utterance.isUnknown()) {
-            //System.out.println("Unknown utterance!");
+            System.out.println("--- An unknown utterance has been recognized! ---");
             return utterance;
         }
 

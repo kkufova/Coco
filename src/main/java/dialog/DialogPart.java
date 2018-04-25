@@ -15,11 +15,13 @@ public abstract class DialogPart implements DialogSetup {
 
     protected DialogPart() {
         try {
-            recognizer = new SpeechRecognizer(configureRecognizer(true, getDialogPartGrammar()));
+            recognizer = new SpeechRecognizer(configureRecognizer(setUseGrammar(), getDialogPartGrammar()));
         } catch (IOException exception) {
             System.out.println("A problem with speech recognition has occurred.");
         }
     }
+
+    protected abstract boolean setUseGrammar();
 
     protected abstract String getDialogPartGrammar();
 

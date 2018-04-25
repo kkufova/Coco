@@ -3,6 +3,8 @@ package dialog;
 import java.io.IOException;
 import java.util.Scanner;
 
+import dialog.adaptation.RuleLearner;
+import dialog.adaptation.WordLearner;
 import dialog.constants.Speeches;
 import dialog.enumerations.Category;
 import dialog.recognition.SpeechRecognizer;
@@ -11,16 +13,17 @@ import dialog.speech.Word;
 
 class DialogCorrective implements DialogSetup {
 
-    private static final String CORRECTIVE_DIALOG_GRAMMAR = "";
-    private boolean useGrammar = false;
+    private static final String CORRECTIVE_DIALOG_GRAMMAR = "corrective-dialog";
 
-    private SpeechRecognizer correctiveRecognizer;
+    private SpeechRecognizer lmRecognizer;
+    private SpeechRecognizer grammarRecognizer;
 
     DialogCorrective() {
         try {
-            correctiveRecognizer = new SpeechRecognizer(configureRecognizer(useGrammar, CORRECTIVE_DIALOG_GRAMMAR));
+            lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
+            grammarRecognizer = new SpeechRecognizer(configureRecognizer(true, CORRECTIVE_DIALOG_GRAMMAR));
         } catch (IOException exception) {
-            System.out.println("A problem with speech recognition has occurred.");
+            System.out.println("A problem with initializing the speech recognizers has occurred.");
         }
     }
 
@@ -28,7 +31,7 @@ class DialogCorrective implements DialogSetup {
         synthesizeSpeech(Speeches.DO_NOT_UNDERSTAND);
         synthesizeSpeech(Speeches.PLEASE_REPEAT);
 
-        Utterance utterance = recognizeSpeech(correctiveRecognizer, true);
+        Utterance utterance = recognizeSpeech(lmRecognizer, true);
         Word word = utterance.findWordsFromCategoryAndCreateWord(category);
 
         while (word.isEmptyWord()) {
@@ -38,29 +41,49 @@ class DialogCorrective implements DialogSetup {
                 synthesizeSpeech(Speeches.NOT_ANSWER);
             }
             synthesizeSpeech(Speeches.PLEASE_RESPOND);
-            utterance = recognizeSpeech(correctiveRecognizer, true);
+            utterance = recognizeSpeech(lmRecognizer, true);
             word = utterance.findWordsFromCategoryAndCreateWord(category);
         }
-        synthesizeSpeech(Speeches.THANK_YOU_FOR);
 
-        // ask if this is really what the user said
+        Word answer = new Word("no");
+        while (!answer.isPositive()) {
+            synthesizeSpeech(Speeches.DID_I_RECOGNIZE);
+            answer = recognizeSpeech(grammarRecognizer, true).findWordsFromCategoryAndCreateWord(Category.ANSWERS);
+        }
 
         // add new grammar rule
+        RuleLearner ruleLearner = new RuleLearner();
 
-        // let's continue with our dialog!
+        synthesizeSpeech(Speeches.THANK_YOU_FOR);
+        synthesizeSpeech(Speeches.LETS_CONTINUE);
 
         return word;
     }
 
     String getStringFromCorrectiveDialog(Category category) throws Exception {
         if (category.equals(Category.USERS)) {
-            synthesizeSpeech(Speeches.NOT_IN_DATABASE);
-            synthesizeSpeech(Speeches.I_WILL_REMEMBER);
-            // add the name to the users list
-            return getNewUserName();
+            return actUnknownUserDialog();
         }
 
+        //TODO
+
         return "poo";
+    }
+
+    private String actUnknownUserDialog() throws Exception {
+        synthesizeSpeech(Speeches.NOT_IN_DATABASE);
+        synthesizeSpeech(Speeches.I_WILL_REMEMBER);
+
+        String newUserName = getNewUserName();
+        String[] listOfNames = newUserName.split(" ");
+        WordLearner wordLearner = new WordLearner();
+
+        for (String name : listOfNames) {
+            Word nameWord = new Word(name);
+            wordLearner.addWordToCategoryGrammar(nameWord, Category.USERS);
+        }
+
+        return newUserName;
     }
 
     private String getNewUserName() {

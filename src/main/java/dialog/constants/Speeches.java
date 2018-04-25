@@ -12,6 +12,7 @@ public final class Speeches {
     public static final String CHECKOUT = "Now I need to find out a few more details before we can finish the order.";
     public static final String CHOOSE_DELIVERY = "Would you like a free standard delivery or a premium next day delivery?";
     public static final String COUNTRY_CORRECT = "I am assuming that you live in the Czech Republic. Is it correct?";
+    public static final String DID_I_RECOGNIZE = "Did I correctly recognize what you said?";
     public static final String DO_NOT_UNDERSTAND = "I am sorry, but I do not understand what you have said just yet.";
     public static final String ENTER_VALID_PHONE_NUMBER = "Please enter a valid phone number.";
     public static final String EVERYTHING_CORRECT = "Is everything correct?";
@@ -45,6 +46,7 @@ public final class Speeches {
     public static final String ITEMS = "items";
     public static final String I_WILL_REMEMBER = "I promise I will remember next time!";
     public static final String LEAVE_EMPTY = "You can leave this field empty. To do so, just press Enter.";
+    public static final String LETS_CONTINUE = "Now, let's continue.";
     public static final String LETS_ORDER = "Together we will now order your ";
     public static final String MAX_TEN_ITEMS = "I am sorry, but it is not possible to order more than ten items.";
     public static final String NOT_ANSWER = "I am afraid that this is not an answer to my question.";

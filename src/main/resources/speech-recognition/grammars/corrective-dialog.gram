@@ -1,0 +1,19 @@
+#JSGF V1.0;
+
+/**
+  * A grammar that contains the names of the known users of the ordering system.
+  * This grammar expands with the use of the system.
+  *
+  * @author  Klara Kufova
+  * @version 1.0
+  */
+
+grammar corrective-dialog;
+
+import <category-grammars.category-answers.*>;
+
+// -------------
+// DEFAULT RULES
+// -------------
+
+public <yes-no-answer> = <answer> [<answer>] [you (did | didn't | did not | have | haven't | have not)];

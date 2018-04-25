@@ -25,6 +25,11 @@ public class OrderingDialog extends DialogPart {
     }
 
     @Override
+    protected boolean setUseGrammar() {
+        return true;
+    }
+
+    @Override
     protected String getDialogPartGrammar() {
         return GRAMMAR;
     }
