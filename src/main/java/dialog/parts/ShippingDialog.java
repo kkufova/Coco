@@ -104,7 +104,7 @@ public class ShippingDialog extends DialogPart {
         postcode = reader.nextLine();
 
         synthesizeSpeech(COUNTRY_CORRECT);
-        System.out.println("Country: Czech Republic");
+        System.out.println("Country: United Kingdom");
         answer = listenForWord(Category.ANSWERS);
         if (!answer.isPositive()) {
             synthesizeSpeech(FILL_COUNTRY);

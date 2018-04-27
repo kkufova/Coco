@@ -18,6 +18,10 @@ class DialogCorrective implements DialogSetup {
     private SpeechRecognizer lmRecognizer;
     private SpeechRecognizer grammarRecognizer;
 
+    private Utterance utterance;
+    private Word requiredWord;
+    private Word answer;
+
     DialogCorrective() {
         try {
             lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
@@ -29,35 +33,75 @@ class DialogCorrective implements DialogSetup {
 
     Word getWordFromCorrectiveDialog(Category category) throws Exception {
         synthesizeSpeech(Speeches.DO_NOT_UNDERSTAND);
-        synthesizeSpeech(Speeches.PLEASE_REPEAT);
+        synthesizeSpeech(Speeches.PLEASE_REPEAT_ANSWER);
 
-        Utterance utterance = recognizeSpeech(lmRecognizer, true);
-        Word word = utterance.findWordsFromCategoryAndCreateWord(category);
+        utterance = recognizeSpeech(lmRecognizer, true);
+        requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
 
-        while (word.isEmptyWord()) {
-            if (!category.equals(Category.ANSWERS)) {
-                synthesizeSpeech(Speeches.NOT_ANSWER + " " + Speeches.I_HAVE_ASKED + category.getAbout() + ".");
-            } else {
-                synthesizeSpeech(Speeches.NOT_ANSWER);
+        if (requiredWord.isEmptyWord()) {
+            int numberOfAttempts = 3; // Set the number of attempts to suit your application's needs.
+            for (int i = 0; i < numberOfAttempts; i++) {
+                checkIfCorrectlyRecognized();
+                if (answer.isPositive()) {
+                    askUserForRequiredWord(category);
+                } else {
+                    askForRepeat(category);
+                }
+                if (!requiredWord.isEmptyWord()) {
+                    break;
+                }
             }
-            synthesizeSpeech(Speeches.PLEASE_RESPOND);
-            utterance = recognizeSpeech(lmRecognizer, true);
-            word = utterance.findWordsFromCategoryAndCreateWord(category);
         }
 
-        Word answer = new Word("no");
-        while (!answer.isPositive()) {
-            synthesizeSpeech(Speeches.DID_I_RECOGNIZE);
-            answer = recognizeSpeech(grammarRecognizer, true).findWordsFromCategoryAndCreateWord(Category.ANSWERS);
+        if (requiredWord.isEmptyWord()) {
+            synthesizeSpeech(Speeches.IT_LOOKS_LIKE);
+            utterance = getWrittenUtterance();
+            requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
         }
 
-        // add new grammar rule
         RuleLearner ruleLearner = new RuleLearner();
+        ruleLearner.addRuleToGrammar(utterance);
 
         synthesizeSpeech(Speeches.THANK_YOU_FOR);
         synthesizeSpeech(Speeches.LETS_CONTINUE);
 
-        return word;
+        return requiredWord;
+    }
+
+    private void checkIfCorrectlyRecognized() throws Exception {
+        // We need another recognizer:
+        grammarRecognizer = new SpeechRecognizer(configureRecognizer(true, CORRECTIVE_DIALOG_GRAMMAR)); // TODO try to transfer it back
+
+        synthesizeSpeech(Speeches.DID_I_HEAR);
+        answer = recognizeSpeech(grammarRecognizer, true).findWordsFromCategoryAndCreateWord(Category.ANSWERS);
+    }
+
+    private void askUserForRequiredWord(Category category) throws Exception {
+        lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
+
+        if (!category.equals(Category.ANSWERS)) {
+            synthesizeSpeech(Speeches.NOT_ANSWER + " " + Speeches.I_HAVE_ASKED + category.getAbout() + ".");
+        } else {
+            synthesizeSpeech(Speeches.NOT_ANSWER);
+        }
+
+        synthesizeSpeech(Speeches.PLEASE_RESPOND);
+        utterance = recognizeSpeech(lmRecognizer, true);
+        requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
+    }
+
+    private void askForRepeat(Category category) throws Exception {
+        lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
+
+        synthesizeSpeech(Speeches.PLEASE_REPEAT_UTTERANCE);
+        utterance = recognizeSpeech(lmRecognizer, true);
+        requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
+    }
+
+    private Utterance getWrittenUtterance() {
+        Scanner reader = new Scanner(System.in);
+        System.out.print("You: ");
+        return new Utterance(reader.nextLine().toLowerCase());
     }
 
     String getStringFromCorrectiveDialog(Category category) throws Exception {
@@ -65,7 +109,7 @@ class DialogCorrective implements DialogSetup {
             return actUnknownUserDialog();
         }
 
-        //TODO
+        // TODO
 
         return "poo";
     }

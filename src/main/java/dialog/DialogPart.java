@@ -32,14 +32,17 @@ public abstract class DialogPart implements DialogSetup {
 
         Word word = utterance.findWordsFromCategoryAndCreateWord(category);
 
-        if (utterance.isUnknown()) {
-            DialogCorrective dialogCorrective = new DialogCorrective(); // Initiate a new corrective dialog.
-            word = dialogCorrective.getWordFromCorrectiveDialog(category);
-        }
-
-        while (word.isEmptyWord()) {
-            synthesizeSpeech(PLEASE_ANSWER);
-            word = recognizeSpeech(recognizer, false).findWordsFromCategoryAndCreateWord(category);
+        while (utterance.isUnknown() || word.isEmptyWord()) {
+            if (utterance.isUnknown()) {
+                DialogCorrective dialogCorrective = new DialogCorrective(); // Initiate a new corrective dialog.
+                word = dialogCorrective.getWordFromCorrectiveDialog(category);
+                break;
+            }
+            if (word.isEmptyWord()) {
+                synthesizeSpeech(PLEASE_ANSWER);
+                utterance = recognizeSpeech(recognizer, true);
+                word = utterance.findWordsFromCategoryAndCreateWord(category);
+            }
         }
 
         return word;
@@ -50,14 +53,17 @@ public abstract class DialogPart implements DialogSetup {
 
         String string = utterance.findWordsFromCategoryAndCreateString(category);
 
-        if (utterance.isUnknown()) {
-            DialogCorrective dialogCorrective = new DialogCorrective(); // Initiate a new corrective dialog.
-            string = dialogCorrective.getStringFromCorrectiveDialog(category);
-        }
-
-        while (string.isEmpty()) {
-            synthesizeSpeech(PLEASE_ANSWER);
-            string = recognizeSpeech(recognizer, false).findWordsFromCategoryAndCreateString(category);
+        while (utterance.isUnknown() || string.isEmpty()) {
+            if (utterance.isUnknown()) {
+                DialogCorrective dialogCorrective = new DialogCorrective(); // Initiate a new corrective dialog.
+                string = dialogCorrective.getStringFromCorrectiveDialog(category);
+                break;
+            }
+            if (string.isEmpty()) {
+                synthesizeSpeech(PLEASE_ANSWER);
+                utterance = recognizeSpeech(recognizer, true);
+                string = utterance.findWordsFromCategoryAndCreateString(category);
+            }
         }
 
         return string;

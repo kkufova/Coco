@@ -12,10 +12,10 @@ import dialog.speech.Word;
 
 public class WordLearner {
 
-    private static final String PATH_TO_GRAMMARS = "src/main/resources/speech-recognition/grammars/category-grammars/";
+    private static final String PATH_TO_CATEGORY_GRAMMARS = "src/main/resources/speech-recognition/grammars/category-grammars/";
 
     public void addWordToCategoryGrammar(Word word, Category category) {
-        String grammarFile = PATH_TO_GRAMMARS + "category-" + category.toString().toLowerCase() + ".gram";
+        String grammarFile = PATH_TO_CATEGORY_GRAMMARS + "category-" + category.toString().toLowerCase() + ".gram";
 
         String stringToInsert = "     | " + word.toString() + "\n              ;";
 

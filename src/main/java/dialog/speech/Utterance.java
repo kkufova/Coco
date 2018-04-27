@@ -22,7 +22,7 @@ public class Utterance {
 
     private List<Word> words = new ArrayList<>();
 
-    private static final String PATH_TO_GRAMMARS = "src/main/resources/speech-recognition/grammars/category-grammars/";
+    private static final String PATH_TO_CATEGORY_GRAMMARS = "src/main/resources/speech-recognition/grammars/category-grammars/";
 
     public Utterance(String utterance) {
         this.utterance = utterance;
@@ -38,7 +38,7 @@ public class Utterance {
         List<Word> wordsInGrammar = new ArrayList<>();
         List<Word> foundWordsFromCategory = new ArrayList<>();
 
-        FileReader fileReader = new FileReader(PATH_TO_GRAMMARS + "category-" + categoryName + ".gram");
+        FileReader fileReader = new FileReader(PATH_TO_CATEGORY_GRAMMARS + "category-" + categoryName + ".gram");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
 

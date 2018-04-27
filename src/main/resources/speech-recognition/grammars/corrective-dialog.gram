@@ -10,10 +10,9 @@
 
 grammar corrective-dialog;
 
-import <category-grammars.category-answers.*>;
-
 // -------------
 // DEFAULT RULES
 // -------------
 
-public <yes-no-answer> = <answer> [<answer>] [you (did | didn't | did not | have | haven't | have not)];
+public <yes> = (no | nope)+ [you (didn't | did not | haven't | have not)];
+public <no> = (yes | yeah | sure)+ [you (did | have)];
