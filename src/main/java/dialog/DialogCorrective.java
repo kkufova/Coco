@@ -1,6 +1,8 @@
 package dialog;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import dialog.adaptation.RuleLearner;
@@ -20,6 +22,7 @@ class DialogCorrective implements DialogSetup {
 
     private Utterance utterance;
     private Word requiredWord;
+    private String requiredString;
     private Word answer;
 
     DialogCorrective() {
@@ -39,13 +42,13 @@ class DialogCorrective implements DialogSetup {
         requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
 
         if (requiredWord.isEmptyWord()) {
-            int numberOfAttempts = 3; // Set the number of attempts to suit your application's needs.
+            int numberOfAttempts = 0; // Set the number of attempts to suit your application's needs. // TODO fix
             for (int i = 0; i < numberOfAttempts; i++) {
                 checkIfCorrectlyRecognized();
                 if (answer.isPositive()) {
                     askUserForRequiredWord(category);
                 } else {
-                    askForRepeat(category);
+                    askForRepeatingWord(category);
                 }
                 if (!requiredWord.isEmptyWord()) {
                     break;
@@ -56,6 +59,14 @@ class DialogCorrective implements DialogSetup {
         if (requiredWord.isEmptyWord()) {
             synthesizeSpeech(Speeches.IT_LOOKS_LIKE);
             utterance = getWrittenUtterance();
+
+            // As this is not a recognized speech, it is necessary to set the words manually:
+            String[] wordsInUtterance = utterance.toString().split(" ");
+            List<Word> words = new ArrayList<>();
+            for (String wordInUtterance : wordsInUtterance) {
+                words.add(new Word(wordInUtterance));
+            }
+            utterance.setWords(words);
             requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
         }
 
@@ -70,7 +81,7 @@ class DialogCorrective implements DialogSetup {
 
     private void checkIfCorrectlyRecognized() throws Exception {
         // We need another recognizer:
-        grammarRecognizer = new SpeechRecognizer(configureRecognizer(true, CORRECTIVE_DIALOG_GRAMMAR)); // TODO try to transfer it back
+        grammarRecognizer = new SpeechRecognizer(configureRecognizer(true, CORRECTIVE_DIALOG_GRAMMAR));
 
         synthesizeSpeech(Speeches.DID_I_HEAR);
         answer = recognizeSpeech(grammarRecognizer, true).findWordsFromCategoryAndCreateWord(Category.ANSWERS);
@@ -90,7 +101,7 @@ class DialogCorrective implements DialogSetup {
         requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
     }
 
-    private void askForRepeat(Category category) throws Exception {
+    private void askForRepeatingWord(Category category) throws Exception {
         lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
 
         synthesizeSpeech(Speeches.PLEASE_REPEAT_UTTERANCE);
@@ -109,9 +120,70 @@ class DialogCorrective implements DialogSetup {
             return actUnknownUserDialog();
         }
 
-        // TODO
+        synthesizeSpeech(Speeches.DO_NOT_UNDERSTAND);
+        synthesizeSpeech(Speeches.PLEASE_REPEAT_ANSWER);
 
-        return "poo";
+        utterance = recognizeSpeech(lmRecognizer, true);
+        requiredString = utterance.findWordsFromCategoryAndCreateString(category);
+
+        if (requiredString.isEmpty()) {
+            int numberOfAttempts = 1; // Set the number of attempts to suit your application's needs.
+            for (int i = 0; i < numberOfAttempts; i++) {
+                checkIfCorrectlyRecognized();
+                if (answer.isPositive()) {
+                    askUserForRequiredString(category);
+                } else {
+                    askForRepeatingString(category);
+                }
+                if (!requiredString.isEmpty()) {
+                    break;
+                }
+            }
+        }
+
+        if (requiredString.isEmpty()) {
+            synthesizeSpeech(Speeches.IT_LOOKS_LIKE);
+            utterance = getWrittenUtterance();
+
+            // As this is not a recognized speech, it is necessary to set the word manually:
+            String[] wordsInUtterance = utterance.toString().split(" ");
+            List<Word> words = new ArrayList<>();
+            for (String wordInUtterance : wordsInUtterance) {
+                words.add(new Word(wordInUtterance));
+            }
+            utterance.setWords(words);
+            requiredString = utterance.findWordsFromCategoryAndCreateString(category);
+        }
+
+        RuleLearner ruleLearner = new RuleLearner();
+        ruleLearner.addRuleToGrammar(utterance);
+
+        synthesizeSpeech(Speeches.THANK_YOU_FOR);
+        synthesizeSpeech(Speeches.LETS_CONTINUE);
+
+        return requiredString;
+    }
+
+    private void askUserForRequiredString(Category category) throws Exception {
+        lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
+
+        if (!category.equals(Category.ANSWERS)) {
+            synthesizeSpeech(Speeches.NOT_ANSWER + " " + Speeches.I_HAVE_ASKED + category.getAbout() + ".");
+        } else {
+            synthesizeSpeech(Speeches.NOT_ANSWER);
+        }
+
+        synthesizeSpeech(Speeches.PLEASE_RESPOND);
+        utterance = recognizeSpeech(lmRecognizer, true);
+        requiredString = utterance.findWordsFromCategoryAndCreateString(category);
+    }
+
+    private void askForRepeatingString(Category category) throws Exception {
+        lmRecognizer = new SpeechRecognizer(configureRecognizer(false, null));
+
+        synthesizeSpeech(Speeches.PLEASE_REPEAT_UTTERANCE);
+        utterance = recognizeSpeech(lmRecognizer, true);
+        requiredString = utterance.findWordsFromCategoryAndCreateString(category);
     }
 
     private String actUnknownUserDialog() throws Exception {

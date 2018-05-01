@@ -36,6 +36,8 @@ public abstract class DialogPart implements DialogSetup {
             if (utterance.isUnknown()) {
                 DialogCorrective dialogCorrective = new DialogCorrective(); // Initiate a new corrective dialog.
                 word = dialogCorrective.getWordFromCorrectiveDialog(category);
+                // It is necessary to set the grammar-based recognition again:
+                recognizer = new SpeechRecognizer(configureRecognizer(setUseGrammar(), getDialogPartGrammar()));
                 break;
             }
             if (word.isEmptyWord()) {
@@ -57,6 +59,8 @@ public abstract class DialogPart implements DialogSetup {
             if (utterance.isUnknown()) {
                 DialogCorrective dialogCorrective = new DialogCorrective(); // Initiate a new corrective dialog.
                 string = dialogCorrective.getStringFromCorrectiveDialog(category);
+                // It is necessary to set the grammar-based recognition again:
+                recognizer = new SpeechRecognizer(configureRecognizer(setUseGrammar(), getDialogPartGrammar()));
                 break;
             }
             if (string.isEmpty()) {
