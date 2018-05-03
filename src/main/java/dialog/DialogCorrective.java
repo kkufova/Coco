@@ -42,7 +42,7 @@ class DialogCorrective implements DialogSetup {
         requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
 
         if (requiredWord.isEmptyWord()) {
-            int numberOfAttempts = 0; // Set the number of attempts to suit your application's needs. // TODO fix
+            int numberOfAttempts = 1; // Set the number of attempts to suit your application's needs.
             for (int i = 0; i < numberOfAttempts; i++) {
                 checkIfCorrectlyRecognized();
                 if (answer.isPositive()) {
@@ -71,7 +71,7 @@ class DialogCorrective implements DialogSetup {
         }
 
         RuleLearner ruleLearner = new RuleLearner();
-        ruleLearner.addRuleToGrammar(utterance);
+        ruleLearner.addRuleToGrammar(utterance, requiredWord, category);
 
         synthesizeSpeech(Speeches.THANK_YOU_FOR);
         synthesizeSpeech(Speeches.LETS_CONTINUE);
@@ -156,7 +156,7 @@ class DialogCorrective implements DialogSetup {
         }
 
         RuleLearner ruleLearner = new RuleLearner();
-        ruleLearner.addRuleToGrammar(utterance);
+        ruleLearner.addRuleToGrammar(utterance, new Word(requiredString), category);
 
         synthesizeSpeech(Speeches.THANK_YOU_FOR);
         synthesizeSpeech(Speeches.LETS_CONTINUE);

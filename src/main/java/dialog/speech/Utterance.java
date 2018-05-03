@@ -64,7 +64,7 @@ public class Utterance {
         return foundWordsFromCategory;
     }
 
-    private String getRuleName(String categoryName) {
+    public String getRuleName(String categoryName) {
         if (categoryName.endsWith("ies")) {
             return categoryName.replace("ies", "y");   // E.g. deliveries -> delivery
         } else {

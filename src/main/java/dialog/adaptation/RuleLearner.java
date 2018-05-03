@@ -1,11 +1,13 @@
 package dialog.adaptation;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,9 +15,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import dialog.Dialog;
+import dialog.enumerations.Category;
 import dialog.speech.Utterance;
+import dialog.speech.Word;
 
 public class RuleLearner {
 
@@ -24,16 +29,22 @@ public class RuleLearner {
 
     private HashMap<String, String[]> rules = new HashMap<>(); // <actual rule body, list of words in a rule>
     private String ruleBodyToBeModified;
+    private String ruleBodyToBeDeleted;
 
-    public void addRuleToGrammar(Utterance utterance) throws IOException {
+    public void addRuleToGrammar(Utterance utterance, Word categoryWord, Category category) throws IOException {
         RuleScanner ruleScanner = new RuleScanner();
         rules = ruleScanner.getAllRulesMap(grammarFile);
 
         String newRuleBody = utterance.toString();
+        // --- Support for references to rules from category grammars:
+        String ruleName = utterance.getRuleName(category.toString().toLowerCase());
+        newRuleBody = newRuleBody.replace(categoryWord.toString(), "<" + ruleName + ">");
+        // ---
         String[] newRuleBodyWords = newRuleBody.split(" ");
 
         if (canBeAddedToExistingRule(newRuleBodyWords)) {
             modifyExistingRule(newRuleBody);
+            removeObsoleteRule();
         } else {
             addNewRule(newRuleBody + ";");
         }
@@ -48,6 +59,7 @@ public class RuleLearner {
             int allowedDifferencesRight = 3;
 
             if (Arrays.equals(ruleBodyWords, newRuleBodyWords)) {
+                ruleBodyToBeModified = ruleBody;
                 return true;
             }
             for (String word : ruleBodyWords) {
@@ -64,6 +76,7 @@ public class RuleLearner {
                 continue;
             }
             ruleBodyToBeModified = ruleBody;
+            ruleBodyToBeDeleted = ruleBody;
             return true;
         }
 
@@ -77,13 +90,15 @@ public class RuleLearner {
 
         LinkedList<DiffMatchPatch.Diff> diff = computeDiffMatchPatch(newRuleBody);
 
-        for (int i = 0; i < diff.size(); i++) {
-            if (diff.get(i).text.equals("")) {
-                diff.remove(i);
+        LinkedList<DiffMatchPatch.Diff> itemsToRemove = new LinkedList<>();
+        for (DiffMatchPatch.Diff item : diff) {
+            if (item.text.equals("") || item.text.matches(" +")) {
+                itemsToRemove.add(item);
             }
         }
+        diff.removeAll(itemsToRemove);
 
-        System.out.println(diff); // TODO remove
+        //System.out.println(diff);
 
         for (int i = 0; i < diff.size(); i++) {
 
@@ -136,18 +151,8 @@ public class RuleLearner {
             }
         }
 
-        // TODO
-        // remove duplicates
-        // reprezentanti zavorek nefunguji s vnorenyma zavorkama
-        // predelat category words na <neco>
-        // odstran stare ruleBody z gramatiky
-
-        ruleBodyToBeModified = ruleBodyToBeModified.trim().replaceAll(" +", " ");
-
-        RuleScanner ruleScanner = new RuleScanner();
-        ruleBodyToBeModified = ruleScanner.mergeBrackets(ruleBodyToBeModified);
-        ruleBodyToBeModified = ruleScanner.fixNonsensicalBrackets(ruleBodyToBeModified);
-        ruleBodyToBeModified = ruleScanner.removeDuplicates(ruleBodyToBeModified);
+        RuleFormatter ruleFormatter = new RuleFormatter();
+        ruleBodyToBeModified = ruleFormatter.performFormatting(ruleBodyToBeModified);
 
         addNewRule(ruleBodyToBeModified + ";");
     }
@@ -164,7 +169,7 @@ public class RuleLearner {
         if (putBefore) {
             oldText = array[0];
             if (array.length > 1) {
-                pattern = Pattern.compile(oldText + "( .*)" + array[1]); // Sometimes we need more context.
+                pattern = Pattern.compile(oldText + "([ (\\[]+)" + array[1]); // Sometimes we need more context.
             } else {
                 pattern = Pattern.compile(oldText);
             }
@@ -252,6 +257,18 @@ public class RuleLearner {
             Files.write(path, content.getBytes(charset));
         } catch (IOException exception) {
             System.err.println("An error occurred during the creation of the new rule.");
+        }
+    }
+
+    private void removeObsoleteRule() {
+        try {
+            File file = new File(grammarFile);
+            List<String> out = Files.lines(file.toPath())
+                    .filter(line -> !line.contains(ruleBodyToBeDeleted))
+                    .collect(Collectors.toList());
+            Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException exception) {
+            System.err.println("An error occurred during the deletion of the obsolete rule.");
         }
     }
 

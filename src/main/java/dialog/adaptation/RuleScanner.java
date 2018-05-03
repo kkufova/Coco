@@ -53,53 +53,27 @@ class RuleScanner {
         ruleBody = ruleBody.replace("+", "");
         ruleBody = ruleBody.replace("|", "");
 
-        ruleBody = ruleBody.replaceAll("<[a-z]+?>", "");
+        // References to other rules (uncomment based on your preference):
+        //ruleBody = ruleBody.replaceAll("<[a-z]+?>", "");
 
-        // Round brackets:
-        rulePattern = Pattern.compile("\\(([a-z]+ ?).+?\\)"); // TODO fix najdeme vsechno co je v kulatych a z nich odstranime jine kulate nebo hranate
+        // Representatives (round brackets):
+        rulePattern = Pattern.compile("\\(([a-z]+ ?).+?\\)");
         ruleMatcher = rulePattern.matcher(ruleBody);
         while (ruleMatcher.find()) {
             ruleBody = ruleMatcher.replaceFirst(ruleMatcher.group(1));
         }
 
-        // Square brackets:
-        rulePattern = Pattern.compile("\\[([a-z]+ ?).+?]"); // TODO fix
+        ruleBody = ruleBody.replaceAll(" {2,}", " ");
+
+        // Representatives (square brackets):
+        rulePattern = Pattern.compile("\\[([a-z]+ ?).+?]");
         ruleMatcher = rulePattern.matcher(ruleBody);
         while (ruleMatcher.find()) {
             ruleBody = ruleMatcher.replaceFirst(ruleMatcher.group(1));
         }
 
-        ruleBody = ruleBody.replace("  ", " "); // The double space is caused by the previous group replacement.
+        ruleBody = ruleBody.replaceAll(" {2,}", " "); // The double space is caused by the previous group replacement.
         return ruleBody.split(" ");
-    }
-
-    String mergeBrackets(String inputRule) {
-        inputRule = inputRule.replaceAll("\\) \\(", " | ");
-        inputRule = inputRule.replaceAll("] \\[", " | ");
-
-        // Inappropriate spaces:
-        inputRule = inputRule.replaceAll("\\[ \\(", "[(");
-        inputRule = inputRule.replaceAll("\\( \\[", "([");
-        inputRule = inputRule.replaceAll("\\) ]", ")]");
-        inputRule = inputRule.replaceAll("] \\)", "])");
-
-        return inputRule;
-    }
-
-    String fixNonsensicalBrackets(String inputRule) {
-        Pattern pattern = Pattern.compile("\\(([a-z]+?)\\)");
-        Matcher matcher = pattern.matcher(inputRule);
-        while (matcher.find()) {
-            inputRule = matcher.replaceFirst("[" + matcher.group(1) + "]");
-            matcher = pattern.matcher(inputRule);
-        }
-
-        return inputRule;
-    }
-
-    String removeDuplicates(String inputRule) {
-
-        return inputRule;
     }
 
 }
