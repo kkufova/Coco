@@ -56,7 +56,7 @@ class DialogCorrective implements DialogSetup {
             }
         }
 
-        if (requiredWord.isEmptyWord()) {
+        while (requiredWord.isEmptyWord()) {
             synthesizeSpeech(Speeches.IT_LOOKS_LIKE);
             utterance = getWrittenUtterance();
 
@@ -68,6 +68,9 @@ class DialogCorrective implements DialogSetup {
             }
             utterance.setWords(words);
             requiredWord = utterance.findWordsFromCategoryAndCreateWord(category);
+            if (requiredWord.isEmptyWord()) {
+                askUserForRequiredWord(category);
+            }
         }
 
         RuleLearner ruleLearner = new RuleLearner();
@@ -141,7 +144,7 @@ class DialogCorrective implements DialogSetup {
             }
         }
 
-        if (requiredString.isEmpty()) {
+        while (requiredString.isEmpty()) {
             synthesizeSpeech(Speeches.IT_LOOKS_LIKE);
             utterance = getWrittenUtterance();
 
@@ -153,10 +156,13 @@ class DialogCorrective implements DialogSetup {
             }
             utterance.setWords(words);
             requiredString = utterance.findWordsFromCategoryAndCreateString(category);
+            if (requiredString.isEmpty()) {
+                askUserForRequiredString(category);
+            }
         }
 
         RuleLearner ruleLearner = new RuleLearner();
-        ruleLearner.addRuleToGrammar(utterance, new Word(requiredString), category);
+        ruleLearner.addRuleToGrammar(utterance, new Word(requiredString), category); // TODO: this should be further improved.
 
         synthesizeSpeech(Speeches.THANK_YOU_FOR);
         synthesizeSpeech(Speeches.LETS_CONTINUE);

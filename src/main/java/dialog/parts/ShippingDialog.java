@@ -112,7 +112,7 @@ public class ShippingDialog extends DialogPart {
             country = reader.nextLine();
             synthesizeSpeech(THANK_YOU);
         } else {
-            country = "Czech Republic";
+            country = "United Kingdom";
             synthesizeSpeech(OK);
         }
 

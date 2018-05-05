@@ -10,6 +10,7 @@
 grammar shipping-dialog;
 
 import <category-grammars.category-answers.*>;
+import <category-grammars.category-deliveries.*>;
 
 // -------------
 // DEFAULT RULES
