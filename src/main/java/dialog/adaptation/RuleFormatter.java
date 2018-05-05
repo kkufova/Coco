@@ -47,17 +47,38 @@ class RuleFormatter {
         }
 
         // Single words in square brackets inside round brackets:
-        pattern = Pattern.compile("\\(.*( \\| )*(\\[[a-z]+?])( \\| )*.*\\)");
+        pattern = Pattern.compile("\\(([^)]*)( \\| )*(\\[[a-z]+?])( \\| )*([^(]*)\\)");
         matcher = pattern.matcher(inputRule);
         while (matcher.find()) {
-            inputRule = inputRule.replace(matcher.group(2), matcher.group(2).replace("[", "").replace("]", ""));
+            inputRule = inputRule.replace(matcher.group(3), matcher.group(3).replace("[", "").replace("]", ""));
         }
 
         // Single words in square brackets inside square brackets:
-        pattern = Pattern.compile("\\[.*(\\[[a-z]+?]).*]");
+        pattern = Pattern.compile("\\[([^)\\]]*)( \\| )*(\\[[a-z]+?])( \\| )*([^(\\[]*)]");
         matcher = pattern.matcher(inputRule);
         while (matcher.find()) {
-            inputRule = inputRule.replace(matcher.group(1), matcher.group(1).replace("[", "").replace("]", ""));
+            inputRule = inputRule.replace(matcher.group(3), matcher.group(3).replace("[", "").replace("]", ""));
+        }
+
+        // Disrupting category word links to other rules:
+        pattern = Pattern.compile("<.*(<[a-z]+?>).*>");
+        matcher = pattern.matcher(inputRule);
+        while (matcher.find()) {
+            inputRule = inputRule.replace(matcher.group(0), matcher.group(1));
+        }
+
+        // The whole rule in square brackets:
+        pattern = Pattern.compile("\\[.+]");
+        matcher = pattern.matcher(inputRule);
+        if (matcher.matches()) {
+            inputRule = inputRule.replace(matcher.group(0), matcher.group(0).replace("[", "").replace("]", ""));
+        }
+
+        // The whole rule in round brackets:
+        pattern = Pattern.compile("\\(.+\\)");
+        matcher = pattern.matcher(inputRule);
+        if (matcher.matches()) {
+            inputRule = inputRule.replace(matcher.group(0), matcher.group(0).replace("(", "").replace(")", ""));
         }
 
         return inputRule;

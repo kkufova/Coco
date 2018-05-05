@@ -44,7 +44,9 @@ public class RuleLearner {
 
         if (canBeAddedToExistingRule(newRuleBodyWords)) {
             modifyExistingRule(newRuleBody);
-            removeObsoleteRule();
+            if (!ruleBodyToBeModified.equals(ruleBodyToBeDeleted)) {
+                removeObsoleteRule();
+            }
         } else {
             addNewRule(newRuleBody + ";");
         }
@@ -154,7 +156,9 @@ public class RuleLearner {
         RuleFormatter ruleFormatter = new RuleFormatter();
         ruleBodyToBeModified = ruleFormatter.performFormatting(ruleBodyToBeModified);
 
-        addNewRule(ruleBodyToBeModified + ";");
+        if (!ruleBodyToBeModified.equals(ruleBodyToBeDeleted)) {
+            addNewRule(ruleBodyToBeModified + ";");
+        }
     }
 
     private void appendTextToText(String newText, String oldText, String leftBracket, String rightBracket, boolean putBefore) {

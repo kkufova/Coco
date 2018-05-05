@@ -61,6 +61,8 @@ class RuleScanner {
         ruleMatcher = rulePattern.matcher(ruleBody);
         while (ruleMatcher.find()) {
             ruleBody = ruleMatcher.replaceFirst(ruleMatcher.group(1));
+            rulePattern = Pattern.compile("\\(([a-z]+ ?).+?\\)");
+            ruleMatcher = rulePattern.matcher(ruleBody);
         }
 
         ruleBody = ruleBody.replaceAll(" {2,}", " ");
@@ -70,6 +72,8 @@ class RuleScanner {
         ruleMatcher = rulePattern.matcher(ruleBody);
         while (ruleMatcher.find()) {
             ruleBody = ruleMatcher.replaceFirst(ruleMatcher.group(1));
+            rulePattern = Pattern.compile("\\[([a-z]+ ?).+?]");
+            ruleMatcher = rulePattern.matcher(ruleBody);
         }
 
         ruleBody = ruleBody.replaceAll(" {2,}", " "); // The double space is caused by the previous group replacement.
