@@ -268,7 +268,7 @@ public class RuleLearner {
         try {
             File file = new File(grammarFile);
             List<String> out = Files.lines(file.toPath())
-                    .filter(line -> !line.contains(ruleBodyToBeDeleted))
+                    .filter(line -> !line.contains(" = " + ruleBodyToBeDeleted + ";"))
                     .collect(Collectors.toList());
             Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException exception) {

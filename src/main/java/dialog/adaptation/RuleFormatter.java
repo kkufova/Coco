@@ -51,6 +51,7 @@ class RuleFormatter {
         matcher = pattern.matcher(inputRule);
         while (matcher.find()) {
             inputRule = inputRule.replace(matcher.group(3), matcher.group(3).replace("[", "").replace("]", ""));
+            matcher = pattern.matcher(inputRule);
         }
 
         // Single words in square brackets inside square brackets:
@@ -58,6 +59,7 @@ class RuleFormatter {
         matcher = pattern.matcher(inputRule);
         while (matcher.find()) {
             inputRule = inputRule.replace(matcher.group(3), matcher.group(3).replace("[", "").replace("]", ""));
+            matcher = pattern.matcher(inputRule);
         }
 
         // Disrupting category word links to other rules:
@@ -65,20 +67,7 @@ class RuleFormatter {
         matcher = pattern.matcher(inputRule);
         while (matcher.find()) {
             inputRule = inputRule.replace(matcher.group(0), matcher.group(1));
-        }
-
-        // The whole rule in square brackets:
-        pattern = Pattern.compile("\\[.+]");
-        matcher = pattern.matcher(inputRule);
-        if (matcher.matches()) {
-            inputRule = inputRule.replace(matcher.group(0), matcher.group(0).replace("[", "").replace("]", ""));
-        }
-
-        // The whole rule in round brackets:
-        pattern = Pattern.compile("\\(.+\\)");
-        matcher = pattern.matcher(inputRule);
-        if (matcher.matches()) {
-            inputRule = inputRule.replace(matcher.group(0), matcher.group(0).replace("(", "").replace(")", ""));
+            matcher = pattern.matcher(inputRule);
         }
 
         return inputRule;
@@ -96,6 +85,16 @@ class RuleFormatter {
                     .collect(Collectors.joining(" | ")));
         }
 
+        pattern = Pattern.compile("\\(([a-z ]+?)\\)");
+        matcher = pattern.matcher(inputRule);
+        while (matcher.find()) {
+            inputRule = inputRule.replace(matcher.group(1), Arrays.stream(matcher
+                    .group(1)
+                    .split(" "))
+                    .distinct()
+                    .collect(Collectors.joining(" ")));
+        }
+
         // Duplicates inside square brackets:
         pattern = Pattern.compile("\\[([\\D |]+?)]");
         matcher = pattern.matcher(inputRule);
@@ -105,6 +104,16 @@ class RuleFormatter {
                     .split(" \\| "))
                     .distinct()
                     .collect(Collectors.joining(" | ")));
+        }
+
+        pattern = Pattern.compile("\\[([a-z ]+?)]");
+        matcher = pattern.matcher(inputRule);
+        while (matcher.find()) {
+            inputRule = inputRule.replace(matcher.group(1), Arrays.stream(matcher
+                    .group(1)
+                    .split(" "))
+                    .distinct()
+                    .collect(Collectors.joining(" ")));
         }
 
         return inputRule;

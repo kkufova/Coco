@@ -61,7 +61,6 @@ class RuleScanner {
         ruleMatcher = rulePattern.matcher(ruleBody);
         while (ruleMatcher.find()) {
             ruleBody = ruleMatcher.replaceFirst(ruleMatcher.group(1));
-            rulePattern = Pattern.compile("\\(([a-z]+ ?).+?\\)");
             ruleMatcher = rulePattern.matcher(ruleBody);
         }
 
@@ -72,7 +71,6 @@ class RuleScanner {
         ruleMatcher = rulePattern.matcher(ruleBody);
         while (ruleMatcher.find()) {
             ruleBody = ruleMatcher.replaceFirst(ruleMatcher.group(1));
-            rulePattern = Pattern.compile("\\[([a-z]+ ?).+?]");
             ruleMatcher = rulePattern.matcher(ruleBody);
         }
 
