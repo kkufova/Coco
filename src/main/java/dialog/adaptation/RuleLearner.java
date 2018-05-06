@@ -41,6 +41,14 @@ import dialog.enumerations.Category;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
 
+/**
+ * A class that is responsible for adding new rules or modifying already created rules in the grammars used for
+ * speech recognition.
+ *
+ * The class analyzes whether it is possible to modify an already existing rule. If so, the rule is modified
+ * and its timestamp is updated. If not, a completely new rule is added to the grammar.
+ */
+
 public class RuleLearner {
 
     private static final String PATH_TO_GRAMMARS = "src/main/resources/speech-recognition/grammars/";
@@ -96,6 +104,7 @@ public class RuleLearner {
             if (allowedDifferencesLeft < 0 || allowedDifferencesRight < 0) {
                 continue;
             }
+
             ruleBodyToBeModified = ruleBody;
             ruleBodyToBeDeleted = ruleBody;
             return true;
@@ -156,7 +165,7 @@ public class RuleLearner {
                     }
                 } else {
                     if (diff.get(i + 1).operation.equals(DiffMatchPatch.Operation.INSERT)) { // DELETE INSERT
-                        putTextIntoBrackets(diff.get(i).text, "(", ")", true, false); // may not be first, but it does not matter
+                        putTextIntoBrackets(diff.get(i).text, "(", ")", true, false); // May not be the first, but it does not matter.
                     } else { // DELETE EQUAL
                         if (i != 0) {
                             if (diff.get(i - 1).operation.equals(DiffMatchPatch.Operation.INSERT)) { // INSERT DELETE EQUAL
@@ -192,7 +201,7 @@ public class RuleLearner {
         if (putBefore) {
             oldText = array[0];
             if (array.length > 1) {
-                pattern = Pattern.compile(oldText + "([ (\\[]+)" + array[1]); // Sometimes we need more context.
+                pattern = Pattern.compile(oldText + "([ (\\[]+)" + array[1]); // Use as much context as possible to prevent incorrect modifications.
             } else {
                 pattern = Pattern.compile(oldText);
             }

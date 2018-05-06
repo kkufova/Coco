@@ -24,13 +24,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * A class that is responsible for the correct formatting of each newly created rule.
+ *
+ * Removes inappropriate spaces and duplicate words, merges brackets, and contains
+ * logic for managing incorrectly added constructs, such as disrupted links to rules
+ * from imported grammars.
+ */
+
 class RuleFormatter {
 
     String performFormatting(String inputRule) {
         inputRule = inputRule.trim().replaceAll(" +", " ");
 
         inputRule = mergeBrackets(inputRule);
-        inputRule = fixNonsensicalBrackets(inputRule);
+        inputRule = adjustIncorrectBrackets(inputRule);
         inputRule = mergeBrackets(inputRule);
         inputRule = removeDuplicates(inputRule);
 
@@ -38,7 +46,7 @@ class RuleFormatter {
     }
 
     private String mergeBrackets(String inputRule) {
-        // Basic case:
+        // The basic "or" case:
         inputRule = inputRule.replaceAll("\\) \\(", " | ");
         inputRule = inputRule.replaceAll("] \\[", " | ");
 
@@ -56,7 +64,7 @@ class RuleFormatter {
         return inputRule;
     }
 
-    private String fixNonsensicalBrackets(String inputRule) {
+    private String adjustIncorrectBrackets(String inputRule) {
         // Single words in round brackets:
         Pattern pattern = Pattern.compile("\\(([a-z]+?)\\)");
         Matcher matcher = pattern.matcher(inputRule);
@@ -81,7 +89,7 @@ class RuleFormatter {
             matcher = pattern.matcher(inputRule);
         }
 
-        // Disrupting category word links to other rules:
+        // Disrupted category word links to other rules:
         pattern = Pattern.compile("<.*(<[a-z]+?>).*>");
         matcher = pattern.matcher(inputRule);
         while (matcher.find()) {

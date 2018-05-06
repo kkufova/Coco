@@ -32,6 +32,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * A mechanism used for removing unused rules in grammars.
+ *
+ * Currently, an approach based on removing old rules is available. In the future, deleting rules based on their actual
+ * usage will be implemented as well.
+ */
+
 public class RulePruner {
 
     public void pruneGrammar(String grammarFile) {
@@ -66,12 +73,12 @@ public class RulePruner {
             }
 
         } catch (IOException exception) {
-            System.err.println("An error occurred during the deletion of the obsolete rule.");
+            System.err.println("An error occurred during the deletion of the old rule.");
         }
     }
 
     private void pruneUnusedRules(String grammarFile) {
-        // TODO: implement rule pruning based on the usage of each rule.
+        // TODO: implement rule pruning based on the actual usage of each rule.
     }
 
 }

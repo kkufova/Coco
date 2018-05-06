@@ -19,6 +19,10 @@
 
 package dialog.constants;
 
+/**
+ * The list of all the spoken utterances that can be produced by Coco.
+ */
+
 public final class Speeches {
 
     private Speeches() {
@@ -36,7 +40,6 @@ public final class Speeches {
     public static final String ENTER_VALID_PHONE_NUMBER = "Please enter a valid phone number.";
     public static final String EVERYTHING_CORRECT = "Is everything correct?";
     public static final String EXCUSE_ME = "Excuse me if I do not understand everything you say, I am still learning!";
-    public static final String FIRST_NAME_CORRECT = "I already know your first name. Is it correct?";
     public static final String FILL_ADDRESS = "Now, please fill in the street and the house number.";
     public static final String FILL_CITY = "Please fill in the city.";
     public static final String FILL_COUNTRY = "All right, in that case, please fill in the correct country.";
@@ -47,11 +50,12 @@ public final class Speeches {
     public static final String FILL_POSTCODE = "What is the postcode?";
     public static final String FILL_QUESTION = "Would you mind filling out the following form?";
     public static final String FILL_SHIPPING_INFO_AGAIN = "We need to fill in the shipping information again.";
+    public static final String FIRST_NAME_CORRECT = "I already know your first name. Is it correct?";
     public static final String FURTHER_INFO = "The order details are being sent to your email address as we speak.";
     public static final String GOODBYE = "Goodbye ";
     public static final String GOODBYE_ITEMS_NOT_CHOSEN = "OK, please choose the goods you would like to order first and come back later. Goodbye!";
-    public static final String GOODBYE_WRONG_PRICE = "Please review the price of the items first and place the order later. Goodbye!";
     public static final String GOODBYE_UNFORTUNATE = "Oh, that is unfortunate. Please come back later! Bye!";
+    public static final String GOODBYE_WRONG_PRICE = "Please review the price of the items first and place the order later. Goodbye!";
     public static final String GREAT = "Great!";
     public static final String GREAT_ORDER_IS_HAPPENING = "That is great! Let me prepare a new ordering form for you.";
     public static final String HELLO = "Hello ";
@@ -59,15 +63,15 @@ public final class Speeches {
     public static final String HOW_MANY_ITEMS = "OK! How many items would you like to order in total?";
     public static final String I_AM_SORRY = "I am sorry.";
     public static final String I_HAVE_ASKED = "I have asked you about the ";
+    public static final String I_WILL_REMEMBER = "I promise I will remember next time!";
     public static final String INTRODUCE_ITEM = "Now, I need you to tell me more about the ";
     public static final String INTRODUCTION = "My name is Coco and I will guide you through the whole experience.";
+    public static final String IT_LOOKS_LIKE = "It looks like I cannot understand you at all. Could you please write it down for me?";
     public static final String ITEM = "item";
     public static final String ITEMS = "items";
-    public static final String I_WILL_REMEMBER = "I promise I will remember next time!";
     public static final String LEAVE_EMPTY = "You can leave this field empty. To do so, just press Enter.";
     public static final String LETS_CONTINUE = "Now, let's continue.";
     public static final String LETS_ORDER = "Together we will now order your ";
-    public static final String IT_LOOKS_LIKE = "It looks like I cannot understand you at all. Could you please write it down for me?";
     public static final String MAX_TEN_ITEMS = "I am sorry, but it is not possible to order more than ten items.";
     public static final String NOT_ANSWER = "I am afraid that this was not an answer to my question.";
     public static final String NOT_IN_DATABASE = "I have never heard this name before. Could you please write it down for me?";
@@ -103,8 +107,8 @@ public final class Speeches {
     public static final String UNFORTUNATE = "Oh, that is unfortunate.";
     public static final String WELCOME = "Hello! Welcome to the clothes and shoes ordering system.";
     public static final String WHAT_IS_IT = "What is it?";
+    public static final String WHICH_ITEM_INCORRECT = "Please say the number of the item that is incorrect.";
     public static final String WILL_KEEP_YOU_INFORMED = "We will keep you informed until the ordered items arrive.";
     public static final String WILL_MAKE_IT_HAPPEN = "OK, I will make it happen.";
-    public static final String WHICH_ITEM_INCORRECT = "Please say the number of the item that is incorrect.";
 
 }

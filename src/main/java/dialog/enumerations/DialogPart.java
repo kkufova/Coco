@@ -19,6 +19,12 @@
 
 package dialog.enumerations;
 
+/**
+ * The list of all the parts of a dialog.
+ * 
+ * The list can be further extended.
+ */
+
 public enum DialogPart {
     OPENING("opening"),
     COUNTING("counting"),

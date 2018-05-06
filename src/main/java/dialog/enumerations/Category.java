@@ -19,6 +19,12 @@
 
 package dialog.enumerations;
 
+/**
+ * The list of all the available categories in the system.
+ *
+ * The list can be further extended.
+ */
+
 public enum Category {
     ANSWERS(""),
     COLORS("color of the item"),

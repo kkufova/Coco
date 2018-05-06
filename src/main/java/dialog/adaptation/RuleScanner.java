@@ -26,6 +26,12 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A class used for browsing the already generated rules and constructing their representations.
+ *
+ * Each rule can be described by its full body and the list of representing words.
+ */
+
 class RuleScanner {
 
     HashMap<String, String[]> getAllRulesMap(String grammarFile) throws IOException {
@@ -66,7 +72,7 @@ class RuleScanner {
             ruleBody = "";
         }
 
-        // All the available special symbols in a rule body:
+        // Remove all the possible special symbols in a rule body:
         ruleBody = ruleBody.replace(";", "");
         ruleBody = ruleBody.replace("*", "");
         ruleBody = ruleBody.replace("+", "");
@@ -93,7 +99,8 @@ class RuleScanner {
             ruleMatcher = rulePattern.matcher(ruleBody);
         }
 
-        ruleBody = ruleBody.replaceAll(" {2,}", " "); // The double space is caused by the previous group replacement.
+        ruleBody = ruleBody.replaceAll(" {2,}", " "); // Double spaces are caused by the previous group replacements.
+
         return ruleBody.split(" ");
     }
 
