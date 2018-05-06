@@ -40,6 +40,12 @@ public class Dialog {
     public static String dialogPart;
 
     public static void main(String[] args) throws Exception {
+        System.out.println("-------" + "\n"
+                + "NOTICE:" + "\n"
+                + "For a pleasant experience, make sure your microphone is turned on only if you are actually talking." + "\n"
+                + "This will prevent the background noise from disrupting the speech recognition." + "\n"
+                + "-------");
+
         DialogFactory factory = new DialogFactory();
         RulePruner rulePruner = new RulePruner();
 
