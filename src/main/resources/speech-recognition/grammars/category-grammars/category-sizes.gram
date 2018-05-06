@@ -3,7 +3,7 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains the available sizes of the clothes.
+  * A grammar that contains the list of available sizes of clothes and shoes.
   *
   * @author  Klara Kufova
   * @version 1.0

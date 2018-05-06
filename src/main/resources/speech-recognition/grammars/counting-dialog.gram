@@ -2,7 +2,7 @@
 
 /**
   * A grammar that describes the counting dialog.
-  * Its purpose is to find out the total number of items that will be ordered.
+  * Its purpose is to find out the total amount of items that will be ordered in the system.
   *
   * @author  Klara Kufova
   * @version 1.0

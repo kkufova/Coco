@@ -3,7 +3,7 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains basic colors that can be used during ordering.
+  * A grammar that contains the list of basic colors that can be used to describe an item during the ordering process.
   *
   * @author  Klara Kufova
   * @version 1.0

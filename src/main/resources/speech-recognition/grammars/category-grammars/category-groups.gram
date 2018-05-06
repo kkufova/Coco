@@ -3,8 +3,8 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains the main kinds of merchandise that are available in the ordering system.
-  * In this particular case, the system is used for ordering fashion items.
+  * A grammar that contains the list of the main kinds of products that are available in the ordering system.
+  * In this particular case, the system is used for ordering clothing merchandise.
   *
   * @author  Klara Kufova
   * @version 1.0

@@ -3,7 +3,7 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains the two available delivery options.
+  * A grammar that contains the available delivery options.
   *
   * @author  Klara Kufova
   * @version 1.0

@@ -1,8 +1,7 @@
 #JSGF V1.0;
 
 /**
-  * A grammar that contains the names of the known users of the ordering system.
-  * This grammar expands with the use of the system.
+  * A grammar that describes the corrective dialog.
   *
   * @author  Klara Kufova
   * @version 1.0

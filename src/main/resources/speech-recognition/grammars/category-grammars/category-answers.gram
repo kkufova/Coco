@@ -3,7 +3,7 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains different affirmative and negative answers that can be used within the dialog.
+  * A grammar that contains the list of various affirmative and negative answers that can be used within the dialog.
   *
   * @author  Klara Kufova
   * @version 1.0

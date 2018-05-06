@@ -3,7 +3,7 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains numbers reusable within the dialog system.
+  * A grammar that contains the list of numbers reusable within the dialog system.
   *
   * @author  Klara Kufova
   * @version 1.0

@@ -3,8 +3,8 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains all the different types of clothes, shoes, and accessories
-  * that can be ordered in the system.
+  * A grammar that contains the list of all the different types of clothes, shoes, and accessories that can be
+  * ordered in the system.
   *
   * @author  Klara Kufova
   * @version 1.0

@@ -3,7 +3,7 @@
 /**
   * --- This is a CATEGORY grammar. ---
   *
-  * A grammar that contains the names of the known users of the ordering system.
+  * A grammar that contains the list of names of the system's known users.
   * This grammar expands with the use of the system.
   *
   * @author  Klara Kufova
