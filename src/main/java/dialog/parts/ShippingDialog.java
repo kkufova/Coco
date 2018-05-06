@@ -27,6 +27,14 @@ import dialog.DialogPart;
 import dialog.enumerations.Category;
 import dialog.speech.Word;
 
+/**
+ * The dialog part responsible for obtaining the correct shipping information and the desired delivery option
+ * from the user.
+ *
+ * The system provides the possibility to read the entered information aloud. The shipping information can be
+ * corrected in case of any mistakes that may have been made during the dialog.
+ */
+
 public class ShippingDialog extends DialogPart {
 
     private static final String GRAMMAR = "shipping-dialog";

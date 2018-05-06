@@ -25,6 +25,14 @@ import dialog.DialogPart;
 import dialog.enumerations.Category;
 import dialog.speech.Word;
 
+/**
+ * A dialog part that is responsible for obtaining the amount of items selected by the user, which will be ordered
+ * in the following dialog part.
+ *
+ * If the amount exceeds the allowed limit, Coco informs the user and provides the opportunity to order the
+ * maximum allowed number of the chosen items.
+ */
+
 public class CountingDialog extends DialogPart {
 
     private static final String GRAMMAR = "counting-dialog";
@@ -85,7 +93,7 @@ public class CountingDialog extends DialogPart {
         }
     }
 
-    // Returns true if the user wants to order only ten of the chosen items.
+    // Returns true if the user wants to order only the allowed amount of the chosen items:
     private boolean userWantsToOrderTenItems() throws Exception {
         synthesizeSpeech(MAX_TEN_ITEMS);
         synthesizeSpeech(ORDER_TEN_QUESTION);

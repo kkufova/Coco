@@ -24,7 +24,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class represents one word of an utterance.
+ * This class represents one word of an utterance and provides a number of methods used for
+ * further analysis of the word.
  */
 
 public class Word {

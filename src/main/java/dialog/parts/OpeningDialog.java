@@ -26,6 +26,13 @@ import dialog.DialogPart;
 import dialog.enumerations.Category;
 import dialog.speech.Word;
 
+/**
+ * The very first dialog part that is responsible for welcoming the user, introducing Coco,
+ * and obtaining the user's name.
+ *
+ * If the user does not have the order ready, the dialog is concluded.
+ */
+
 public class OpeningDialog extends DialogPart {
 
     private static final String GRAMMAR = "opening-dialog";

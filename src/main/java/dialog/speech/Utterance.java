@@ -22,7 +22,6 @@ package dialog.speech;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -31,8 +30,10 @@ import java.util.regex.Pattern;
 import dialog.enumerations.Category;
 
 /**
- * This class represents one utterance of a speaker in the dialog
- * and contains a number of methods that allow you to further analyze the utterance.
+ * This class represents one utterance spoken by the user in the dialog.
+ *
+ * The class contains a number of methods that allow the utterance to be further analyzed, such as
+ * searched for any available category words, category strings, or examined for possible emptiness.
  */
 
 public class Utterance {
@@ -100,7 +101,7 @@ public class Utterance {
         if (entryMatcher.find()) {
             wordsInGrammar.add(new Word(entryMatcher.group(2)));
         }
-        // Find all other words:
+        // Find all the other words:
         while ((line = bufferedReader.readLine()) != null) {
             entryMatcher = entryPattern.matcher(line);
             if (entryMatcher.find()) {
@@ -111,7 +112,7 @@ public class Utterance {
         return wordsInGrammar;
     }
 
-    // Use this method in cases where more that one word is expected
+    // Use this method in cases where more than one word is expected
     // (such as a multiple-word name like Rosie Elizabeth).
     private String createStringFromListOfWords(List<Word> listOfWords) {
         String result = "";
@@ -126,9 +127,8 @@ public class Utterance {
         return result.trim();
     }
 
-    // Use this method in cases where only single-word answer is expected
-    // (such as "yes" or "seven") and you want to call other methods available
-    // only for single Words.
+    // Use this method in cases where only a single-word answer is expected
+    // (such as "yes" or "seven").
     private Word createWordFromListOfWords(List<Word> listOfWords) {
         if (listOfWords.size() == 1) {
             return listOfWords.get(0);

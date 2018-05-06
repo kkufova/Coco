@@ -25,6 +25,12 @@ import dialog.DialogPart;
 import dialog.enumerations.Category;
 import dialog.speech.Word;
 
+/**
+ * The final dialog part; the closing dialog.
+ *
+ * Coco informs the user about finalizing the order, asks for further requests, and concludes the whole experience.
+ */
+
 public class ClosingDialog extends DialogPart {
 
     private static final String GRAMMAR = "closing-dialog";

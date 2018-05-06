@@ -24,6 +24,13 @@ import java.io.IOException;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 
+/**
+ * A custom class used for the automatic speech recognition in Coco. The class allows to set any parameter
+ * from the default.config.xml file.
+ *
+ * Here, the parameters responsible for detecting out-of-grammar utterances are set.
+ */
+
 public class SpeechRecognizer extends LiveSpeechRecognizer {
 
     public SpeechRecognizer(Configuration configuration) throws IOException {

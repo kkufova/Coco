@@ -30,6 +30,14 @@ import dialog.enumerations.Category;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
 
+/**
+ * The most significant dialog part; the actual specification of the selected items.
+ *
+ * Each item is represented by its category, type, size, and a number. At the end of the dialog part, the list of
+ * all the ordered items is displayed, and it is possible to review the details and reorder any item in case of
+ * mistakes that may have been made during the ordering process by either the user or the system.
+ */
+
 public class OrderingDialog extends DialogPart {
 
     private static final String GRAMMAR = "ordering-dialog";
