@@ -28,6 +28,14 @@ import dialog.recognition.SpeechRecognizer;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
 
+/**
+ * An abstract parent class of each dialog part.
+ *
+ * The class is responsible for finding the category keywords and strings in the spoken utterances,
+ * for initiating the "please repeat" dialogs in case the required information was not included in the utterance,
+ * and for initiating corrective dialogs.
+ */
+
 public abstract class DialogPart implements DialogSetup {
 
     protected SpeechRecognizer recognizer;

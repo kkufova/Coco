@@ -32,6 +32,15 @@ import dialog.recognition.SpeechRecognizer;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
 
+/**
+ * A class that is responsible for the corrective dialog, which is initiated every time an out-of-grammar utterance
+ * is detected.
+ *
+ * The corrective dialog uses two types of speech recognizers; a statistical language model-based recognizer and
+ * a grammar-based recognizer with a custom grammar, which was created specifically for the purposes of
+ * a corrective dialog.
+ */
+
 class DialogCorrective implements DialogSetup {
 
     private static final String CORRECTIVE_DIALOG_GRAMMAR = "corrective-dialog";
@@ -167,7 +176,7 @@ class DialogCorrective implements DialogSetup {
             synthesizeSpeech(Speeches.IT_LOOKS_LIKE);
             utterance = getWrittenUtterance();
 
-            // As this is not a recognized speech, it is necessary to set the word manually:
+            // As this is not a recognized speech, it is necessary to set the words manually:
             String[] wordsInUtterance = utterance.toString().split(" ");
             List<Word> words = new ArrayList<>();
             for (String wordInUtterance : wordsInUtterance) {
@@ -181,7 +190,7 @@ class DialogCorrective implements DialogSetup {
         }
 
         RuleLearner ruleLearner = new RuleLearner();
-        ruleLearner.addRuleToGrammar(utterance, new Word(requiredString), category); // TODO: this should be further improved.
+        ruleLearner.addRuleToGrammar(utterance, new Word(requiredString), category); // TODO: this should be improved.
 
         synthesizeSpeech(Speeches.THANK_YOU_FOR);
         synthesizeSpeech(Speeches.LETS_CONTINUE);

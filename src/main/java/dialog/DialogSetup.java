@@ -43,6 +43,13 @@ import marytts.util.data.audio.AudioPlayer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * A foundation class that is responsible for the automatic speech recognition and speech synthesis.
+ *
+ * The class provides all the required setup that needs to be performed prior each recognition
+ * or synthesis of an utterance, and gradually prints the dialog to the standard output.
+ */
+
 public interface DialogSetup {
 
     String ACOUSTIC_MODEL = "src/main/resources/speech-recognition/acoustic-model";

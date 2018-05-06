@@ -21,6 +21,10 @@ package dialog;
 
 import dialog.parts.*;
 
+/**
+ * A class responsible for establishing each dialog part.
+ */
+
 class DialogFactory {
 
     DialogPart getDialogPart(dialog.enumerations.DialogPart dialogPart) {

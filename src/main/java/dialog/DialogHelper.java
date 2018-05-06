@@ -26,7 +26,8 @@ import dialog.speech.Word;
 import org.apache.commons.lang.WordUtils;
 
 /**
- * This class contains helper methods needed by the dialog.
+ * This class contains various helper methods needed by the dialog, such as miscellaneous conversions,
+ * methods used for string capitalization, and other.
  */
 
 public class DialogHelper {

@@ -24,8 +24,9 @@ import java.util.logging.Logger;
 import dialog.adaptation.RulePruner;
 
 /**
- * The main class of the Coco dialog system.
- * Runs each part of the dialog.
+ * The main class of the dialog system that runs each part of the dialog.
+ *
+ * After each dialog part, the mechanism responsible for pruning the grammar is initiated.
  */
 
 public class Dialog {
