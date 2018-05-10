@@ -51,7 +51,7 @@ import dialog.speech.Word;
 
 public class RuleLearner {
 
-    private static final String PATH_TO_GRAMMARS = "src/main/resources/speech-recognition/grammars/";
+    private static final String PATH_TO_GRAMMARS = dialog.constants.Paths.GRAMMARS;
     private String grammarFile = PATH_TO_GRAMMARS + Dialog.dialogPart + "-dialog.gram";
 
     private HashMap<String, String[]> rules = new HashMap<>(); // <actual rule body, list of words in a rule>

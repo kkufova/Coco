@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import javax.sound.sampled.AudioInputStream;
 
+import dialog.constants.Paths;
 import dialog.recognition.SpeechRecognizer;
 import dialog.speech.Utterance;
 import dialog.speech.Word;
@@ -52,10 +53,10 @@ import org.w3c.dom.Element;
 
 public interface DialogSetup {
 
-    String ACOUSTIC_MODEL = "src/main/resources/speech-recognition/acoustic-model";
-    String DICTIONARY = "src/main/resources/speech-recognition/dictionary/cmudict-en-us.dict";
-    String GRAMMAR = "src/main/resources/speech-recognition/grammars";
-    String LANGUAGE_MODEL = "src/main/resources/speech-recognition/language-model/en-70k-0.2-pruned.lm";
+    String ACOUSTIC_MODEL = Paths.ACOUSTIC_MODEL;
+    String DICTIONARY = Paths.DICTIONARY;
+    String GRAMMAR =  Paths.GRAMMARS;
+    String LANGUAGE_MODEL =  Paths.LANGUAGE_MODEL;
 
     default Configuration configureRecognizer(boolean useGrammar, String grammarName) {
         Configuration configuration = new Configuration();

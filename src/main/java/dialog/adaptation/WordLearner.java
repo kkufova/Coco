@@ -37,7 +37,7 @@ import dialog.speech.Word;
 
 public class WordLearner {
 
-    private static final String PATH_TO_CATEGORY_GRAMMARS = "src/main/resources/speech-recognition/grammars/category-grammars/";
+    private static final String PATH_TO_CATEGORY_GRAMMARS = dialog.constants.Paths.CATEGORY_GRAMMARS;
 
     public void addWordToCategoryGrammar(Word word, Category category) {
         String grammarFile = PATH_TO_CATEGORY_GRAMMARS + "category-" + category.toString().toLowerCase() + ".gram";

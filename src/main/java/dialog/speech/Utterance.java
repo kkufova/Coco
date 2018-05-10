@@ -42,7 +42,7 @@ public class Utterance {
 
     private List<Word> words = new ArrayList<>();
 
-    private static final String PATH_TO_CATEGORY_GRAMMARS = "src/main/resources/speech-recognition/grammars/category-grammars/";
+    private static final String PATH_TO_CATEGORY_GRAMMARS = dialog.constants.Paths.CATEGORY_GRAMMARS;
 
     public Utterance(String utterance) {
         this.utterance = utterance;

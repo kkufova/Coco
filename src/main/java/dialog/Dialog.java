@@ -22,6 +22,7 @@ package dialog;
 import java.util.logging.Logger;
 
 import dialog.adaptation.RulePruner;
+import dialog.constants.Paths;
 
 /**
  * The main class of the dialog system that runs each part of the dialog.
@@ -33,7 +34,7 @@ public class Dialog {
 
     // Disable the INFO logging messages:
     static {
-        System.setProperty("java.util.logging.config.file", "src/main/resources/logging/logging.properties");
+        System.setProperty("java.util.logging.config.file", Paths.LOGGING);
         Logger.getLogger(Dialog.class.getName());
     }
 
@@ -49,7 +50,7 @@ public class Dialog {
         DialogFactory factory = new DialogFactory();
         RulePruner rulePruner = new RulePruner();
 
-        String pathToGrammars = "src/main/resources/speech-recognition/grammars/";
+        String pathToGrammars = Paths.GRAMMARS;
 
         DialogPart openingDialog = factory.getDialogPart(dialog.enumerations.DialogPart.OPENING);
         dialogPart = dialog.enumerations.DialogPart.OPENING.toString();
