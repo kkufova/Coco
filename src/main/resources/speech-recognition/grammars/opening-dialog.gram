@@ -18,7 +18,7 @@ import <category-grammars.category-users.*>;
 
 <greetings> = good <part-of-the-day> | hello | hey | hi;
 <part-of-the-day> = morning | afternoon | evening;
-<introduction> =  i'm | i am | it's | it is | my name is;
+<introduction> = i'm | i am | it's | it is | my name is;
 
 public <opening> = [<greetings>] [<introduction>] <user> [<user>];
 

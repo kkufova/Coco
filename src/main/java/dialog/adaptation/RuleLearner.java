@@ -63,6 +63,7 @@ public class RuleLearner {
         rules = ruleScanner.getAllRulesMap(grammarFile);
 
         String newRuleBody = utterance.toString();
+        newRuleBody = removePunctuation(newRuleBody);
         // --- Support for references to rules from category grammars:
         String ruleName = utterance.getRuleName(category.toString().toLowerCase());
         newRuleBody = newRuleBody.replace(categoryWord.toString(), "<" + ruleName + ">");
@@ -302,6 +303,13 @@ public class RuleLearner {
         } catch (IOException exception) {
             System.err.println("An error occurred during the deletion of the obsolete rule.");
         }
+    }
+
+    private String removePunctuation(String text) {
+        return text.replace(".", "")
+                .replace(",", "")
+                .replace("?", "")
+                .replace("!", "");
     }
 
 }
